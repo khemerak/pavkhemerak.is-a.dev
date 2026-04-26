@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# pavkhemerak.dev
+
+The personal portfolio and technical blog of **Pavkhemerak**. Built for precision, performance, and aggressive minimalism.
+
+This frontend application showcases a "Cyber-Architect" brutalist aesthetic—featuring high-contrast terminal-style interfaces, structural grids, and zero border-radius elements.
+
+## Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Library**: [React](https://react.dev/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Typography**: Inter (Sans) & Space Grotesk (Mono)
+- **Icons**: Google Material Symbols
+
+## Features
+
+- **Responsive Neo-Brutalist Design**: A unique dark-mode UI with sharp edges (0px border-radius), "Cyber Cyan" (`#00E5FF`) accents, and ghost-border hover effects.
+- **Terminal Aesthetics**: Simulated terminal windows with scanline overlays and syntax-highlighted code blocks for displaying skills and experience.
+- **Project Showcase**: A gallery of technical experiments and applications with status badges and technology tags.
+- **Technical Blog**: A masonry-grid blog listing with filter capabilities and a rich article reader supporting code blocks, callouts, and blockquotes.
+- **Mobile-First Navigation**: Dedicated bottom navigation bar for mobile devices ensuring a seamless experience across all screen sizes.
+
+## Project Structure
+
+- `app/`: Next.js App Router pages (Home, Skills, Tools, Blog) and global layout/CSS.
+- `components/`: Reusable React components (`NavBar`, `BottomNavBar`, `HeroSection`, `ExperienceSection`, `FeaturedDeployments`, etc.).
+- `public/`: Static assets.
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies using `pnpm` (recommended):
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+```
+
+Then, run the development server:
+
+```bash
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To create an optimized production build:
 
-## Learn More
+```bash
+pnpm build
+```
 
-To learn more about Next.js, take a look at the following resources:
+To test the production build locally:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+All rights reserved. © 2024 Pavkhemerak.

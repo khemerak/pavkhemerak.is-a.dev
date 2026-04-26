@@ -1,26 +1,184 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    /* 1. Core Palette - Verified against DESIGN.md YAML */
+    --color-background: #0d1516; /* YAML: background */
+    --color-foreground: #dce4e5; /* YAML: on-surface */
+
+    /* Primary Interaction: Cyber Cyan */
+    --color-primary: #00e5ff; /* YAML: primary-container / Brand: Cyber Cyan */
+    --color-on-primary: #00363d; /* YAML: on-primary */
+    --color-primary-fixed: #9cf0ff;
+    --color-primary-fixed-dim: #00daf3;
+    --color-primary-container: #00e5ff;
+
+    /* Functional Colors */
+    --color-secondary: #ff571a; /* YAML: secondary-container / Brand: Logic Orange */
+    --color-secondary-light: #ffb59e;
+    --color-tertiary: #00f13d; /* YAML: tertiary-container / Brand: Success Green */
+    --color-tertiary-light: #b5ffaa;
+    --color-tertiary-fixed-dim: #00e639;
+    --color-error: #ffb4ab;
+
+    /* Surface & Elevation Tiering */
+    --color-surface: #192122; /* Level 1: surface-container */
+    --color-surface-bright: #333a3c; /* surface-bright */
+    --color-surface-terminal: #080f11; /* Level 2: surface-container-lowest */
+    --color-surface-high: #242b2d; /* surface-container-high */
+    --color-surface-low: #151d1e; /* surface-container-low */
+
+    /* Structural Spine */
+    --color-border: #333333; /* Brand Logic: The "Structural Spine" */
+    --color-outline: #849396; /* YAML: outline */
+    --color-outline-variant: #3b494c; /* YAML: outline-variant */
+
+    /* On-Surface */
+    --color-on-surface: #dce4e5;
+    --color-on-surface-variant: #bac9cc;
+    --color-on-background: #dce4e5;
+
+    /* 2. Typography - Verified Dual-Font Strategy */
+    --font-sans: "Inter", ui-sans-serif, system-ui;
+    --font-mono: "Space Grotesk", ui-monospace, SFMono-Regular;
+
+    /* 3. Shapes - Strictly Sharp (0px) */
+    --radius-none: 0px;
+    --radius-sm: 0px;
+    --radius-md: 0px;
+    --radius-lg: 0px;
+
+    /* 4. Brand Specifics */
+    --shadow-offset: 4px 4px 0px 0px var(--color-primary);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@layer base {
+    * {
+        @apply border-border;
+        border-radius: 0 !important; /* Global enforcement of 0px shapes */
+    }
+
+    body {
+        @apply bg-background text-foreground font-sans antialiased;
+        /* Verified: 40px Grid Pattern using Structural Spine color at low opacity */
+        background-image:
+            linear-gradient(
+                to right,
+                rgba(51, 51, 51, 0.2) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                to bottom,
+                rgba(51, 51, 51, 0.2) 1px,
+                transparent 1px
+            );
+        background-size: 40px 40px;
+    }
+
+    h1 {
+        @apply text-[64px] font-extrabold leading-[1.1] tracking-[-0.04em] uppercase;
+    }
+    h2 {
+        @apply text-[48px] font-bold leading-[1.2] tracking-[-0.02em] uppercase;
+    }
+    h3 {
+        @apply text-[32px] font-bold leading-[1.2] uppercase;
+    }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+
+/* Top-level @utility — required by Tailwind v4 (cannot be nested) */
+@utility label-caps {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+@layer utilities {
+    .btn-primary {
+        @apply border border-primary text-primary bg-background px-8 py-3
+           label-caps transition-all inline-flex items-center justify-center
+           hover:bg-primary hover:text-background active:translate-x-[2px] active:translate-y-[2px];
+    }
+
+    .terminal-container {
+        @apply bg-surface-terminal border border-border p-4 font-mono;
+        box-shadow: inset 0 0 15px rgba(0, 229, 255, 0.03);
+    }
+
+    .glass-nav {
+        @apply sticky top-0 z-50 border-b border-border bg-background/80;
+        backdrop-filter: blur(12px);
+    }
+
+    .card-cyber {
+        @apply bg-surface border border-border p-6 transition-all duration-300
+           hover:border-primary hover:shadow-[4px_4px_0px_0px_#00e5ff];
+    }
+
+    /* Masonry grid for blog page */
+    .masonry-grid {
+        column-count: 1;
+        column-gap: 16px;
+    }
+    @media (min-width: 768px) {
+        .masonry-grid {
+            column-count: 2;
+        }
+    }
+    @media (min-width: 1024px) {
+        .masonry-grid {
+            column-count: 3;
+        }
+    }
+    .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 16px;
+    }
+
+    /* Card ghost pseudo-element for blog cards */
+    .card-ghost {
+        position: relative;
+    }
+    .card-ghost::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 1px solid var(--color-outline-variant);
+        transform: translate(4px, 4px);
+        z-index: -1;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .card-ghost:hover::before {
+        transform: translate(6px, 6px);
+        border-color: var(--color-primary);
+    }
+
+    /* Scanline overlay for terminal windows */
+    .scanline-overlay::before {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        z-index: 10;
+        background-size: 100% 2px, 3px 100%;
+        pointer-events: none;
+        opacity: 0.3;
+    }
+
+    /* Neo-brutal hover effect for cards */
+    .neo-brutal-hover {
+        transition: all 0.3s ease;
+    }
+    .neo-brutal-hover:hover {
+        border-color: #00E5FF;
+        transform: translate(-2px, -2px);
+        box-shadow: 4px 4px 0px 0px rgba(51,51,51,1);
+    }
 }

@@ -363,6 +363,7 @@ export function BackgroundProfileSection() {
                       src={`https://drive.google.com/uc?export=view&id=${badge.imgId}`}
                       alt={`${badge.issuer} ${badge.name} Badge`}
                       fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16vw"
                       className="object-contain p-1"
                     />
                   </div>

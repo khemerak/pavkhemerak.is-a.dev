@@ -75,6 +75,7 @@ export default function BlogPostPage() {
           alt="Server rack abstract visualization"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwTk_hrbEUA47Qq3yWFwVxr6l-iusKvv7YtZv5PFZaMn4L8IgSlLgBqYNnz_cR1JjgK4_sVQCUanlOCFQj1GNUH13qdYSCbB5uD-rJGbG5BrLOg9hcphZUnfEZN1OGi5Si2QFbe_3x_O2vIvTpVd_gqWskApGKBXjpeH4E5IdHZ4R6q6pnYTGfRrbyEf-PjecYwU1owURgILscgDBt26yfzmUSYMzcKnwkN6HduUjofXx8Y0henncCY2u6hElre3R0ZLKlXA4wktQ"
           fill
+          sizes="100vw"
           className="object-cover filter grayscale contrast-125 group-hover:scale-105 transition-transform duration-700"
         />
       </div>

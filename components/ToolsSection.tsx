@@ -139,6 +139,7 @@ function ProjectCard({ project }: { project: Project }) {
           alt={project.imageAlt}
           src={project.imageUrl}
           fill
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover opacity-80 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500"
         />
       </div>

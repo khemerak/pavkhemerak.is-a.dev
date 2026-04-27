@@ -206,6 +206,7 @@ function DesktopBlogCard({ post }: { post: BlogPost }) {
               alt={post.imageAlt || post.title}
               src={post.imageUrl!}
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
             />
             <div className="absolute top-4 left-4 flex gap-2">

@@ -84,6 +84,7 @@ const DeploymentCard: React.FC<DeploymentCardProps> = ({
           alt={imageAlt}
           src={imageUrl}
           fill
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover opacity-60 md:grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-opacity md:transition-all mix-blend-luminosity md:mix-blend-normal group-hover:mix-blend-normal duration-500"
           data-alt={dataAlt}
         />

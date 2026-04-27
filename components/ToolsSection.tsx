@@ -12,51 +12,68 @@ interface Project {
   imageUrl: string;
   imageAlt: string;
   lastCommit: string;
-  primaryAction: { label: string; icon: string };
-  secondaryAction: { label: string; icon?: string };
+  primaryAction: { label: string; icon: string; href?: string };
+  secondaryAction: { label: string; icon?: string; href?: string };
 }
 
 const projects: Project[] = [
   {
-    title: "Etherscan Bot Analyzer",
+    title: "Ket — Fast, Interactive Download Manager",
     description:
-      "A high-performance Python tool designed to monitor and analyze smart contract interactions on the Ethereum blockchain via the Etherscan API. Identifies patterns indicative of bot activity.",
+      "A minimalist, high-velocity CLI utility designed for organizing and retrieving technical snippets and study resources. Built to integrate seamlessly with tiling window managers and Linux-based workflows.",
     tags: [
-      { label: "RUST", color: "text-primary bg-primary/10 border-primary/30" },
-      { label: "WEB3", color: "text-tertiary bg-tertiary/10 border-tertiary/30" },
-      { label: "API", color: "text-on-surface bg-outline-variant/20 border-outline-variant" },
+      { label: "SHELL", color: "text-secondary bg-secondary/10 border-secondary/30" },
+      { label: "TOOL", color: "text-primary bg-primary/10 border-primary/30" },
+      { label: "DOWNLOADER", color: "text-on-surface bg-outline-variant/20 border-outline-variant" },
     ],
-    status: "PRODUCTION",
-    statusColor: "text-tertiary-fixed-dim bg-tertiary-fixed-dim/10",
-    language: "Python",
-    filename: "analyzer.rs",
-    imageUrl:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBrqS0Jt-zR5TZeWpzG0ASFfO35h_Dyk6pMrwylgT3yRH88-h7ucij9amvHbtL2JR349rhOksLZGVJvguLo699t-bM2cXEXNmAHN2psJqn360FK5y9Y51_EgDqqp5KVFubgbwsQz0I39IavbHfNyg9WKe39KymEJqQUkEXBTX7OUDbz7y5D8eMvy5FDD8wznW8VXmHzMsV6vGGc3RsGHauDniWL6iitfDk_DOP-AiFvLPd-JQmrVcYTtNOn4d1eU0QmOTWet4n6hwQ",
-    imageAlt: "Etherscan Bot Analyzer Preview",
-    lastCommit: "Last commit: 2d ago",
-    primaryAction: { label: "View Source", icon: "terminal" },
-    secondaryAction: { label: "Documentation" },
+    status: "STABLE",
+    statusColor: "text-secondary-fixed-dim bg-secondary-fixed-dim/10",
+    language: "Rust",
+    filename: "ket.exe",
+    imageUrl: "/assets/img/ket.png",
+    imageAlt: "Ket CLI Tool Preview",
+    lastCommit: "Last commit: 1w ago",
+    primaryAction: { label: "View Source", icon: "terminal", href: "https://github.com/khemerak/ket.git" },
+    secondaryAction: { label: "Documentation", icon: "menu_book", href: "https://github.com/khemerak/ket.git" },
   },
-  {
-    title: "Decentralized Web3 Chat",
-    description:
-      "A secure, end-to-end encrypted messaging application built on top of decentralized protocols. Features wallet-based authentication and on-chain message hashes for non-repudiation.",
-    tags: [
-      { label: "REACT NATIVE", color: "text-primary bg-primary/10 border-primary/30" },
-      { label: "IPFS", color: "text-tertiary bg-tertiary/10 border-tertiary/30" },
-      { label: "SOLIDITY", color: "text-on-surface bg-outline-variant/20 border-outline-variant" },
-    ],
-    status: "BETA",
-    statusColor: "text-primary-fixed-dim bg-primary-fixed-dim/10",
-    language: "TypeScript",
-    filename: "index.tsx",
-    imageUrl:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBLLNdynclroTPRewHWVteXr3bmyRRRMXtObIgCImP6L_BiCvxhMFXrNvdri2-mZ_lLqgnAufUA5PTWgqIkfRg7I969jN1Kcco9Khrgrl1WWMSQaiQRL6kCS011xxm0513pwm7DcabTu0i0zajhop30DQGHZs7Gxe84R14gd5iAnaBPWC0sV0ghtyID-W4N4Au3Mksp_m2bK4MyE6eQLJpmscITw_N4T6pNilLIORyfgLnBPaGBZH8y-o5mqvb1CEf20Yy7BmTk8lo",
-    imageAlt: "Web3 Chat App Preview",
-    lastCommit: "Last commit: 5h ago",
-    primaryAction: { label: "Launch App", icon: "open_in_new" },
-    secondaryAction: { label: "Smart Contracts", icon: "code" },
-  },
+  // {
+  //   title: "Etherscan Bot Analyzer",
+  //   description:
+  //     "A high-performance Python tool designed to monitor and analyze smart contract interactions on the Ethereum blockchain via the Etherscan API. Identifies patterns indicative of bot activity.",
+  //   tags: [
+  //     { label: "PYTHON", color: "text-primary bg-primary/10 border-primary/30" },
+  //     { label: "WEB3", color: "text-tertiary bg-tertiary/10 border-tertiary/30" },
+  //     { label: "API", color: "text-on-surface bg-outline-variant/20 border-outline-variant" },
+  //   ],
+  //   status: "PRODUCTION",
+  //   statusColor: "text-tertiary-fixed-dim bg-tertiary-fixed-dim/10",
+  //   language: "Python",
+  //   filename: "analyzer.py", // Changed extension to match language
+  //   imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBrqS0Jt-zR5TZeWpzG0ASFfO35h_Dyk6pMrwylgT3yRH88-h7ucij9amvHbtL2JR349rhOksLZGVJvguLo699t-bM2cXEXNmAHN2psJqn360FK5y9Y51_EgDqqp5KVFubgbwsQz0I39IavbHfNyg9WKe39KymEJqQUkEXBTX7OUDbz7y5D8eMvy5FDD8wznW8VXmHzMsV6vGGc3RsGHauDniWL6iitfDk_DOP-AiFvLPd-JQmrVcYTtNOn4d1eU0QmOTWet4n6hwQ",
+  //   imageAlt: "Etherscan Bot Analyzer Preview",
+  //   lastCommit: "Last commit: 2d ago",
+  //   primaryAction: { label: "View Source", icon: "terminal" },
+  //   secondaryAction: { label: "Documentation" },
+  // },
+  // {
+  //   title: "Decentralized Web3 Chat",
+  //   description:
+  //     "A secure, end-to-end encrypted messaging application built on top of decentralized protocols. Features wallet-based authentication and on-chain message hashes for non-repudiation.",
+  //   tags: [
+  //     { label: "REACT NATIVE", color: "text-primary bg-primary/10 border-primary/30" },
+  //     { label: "IPFS", color: "text-tertiary bg-tertiary/10 border-tertiary/30" },
+  //     { label: "SOLIDITY", color: "text-on-surface bg-outline-variant/20 border-outline-variant" },
+  //   ],
+  //   status: "BETA",
+  //   statusColor: "text-primary-fixed-dim bg-primary-fixed-dim/10",
+  //   language: "TypeScript",
+  //   filename: "index.tsx",
+  //   imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBLLNdynclroTPRewHWVteXr3bmyRRRMXtObIgCImP6L_BiCvxhMFXrNvdri2-mZ_lLqgnAufUA5PTWgqIkfRg7I969jN1Kcco9Khrgrl1WWMSQaiQRL6kCS011xxm0513pwm7DcabTu0i0zajhop30DQGHZs7Gxe84R14gd5iAnaBPWC0sV0ghtyID-W4N4Au3Mksp_m2bK4MyE6eQLJpmscITw_N4T6pNilLIORyfgLnBPaGBZH8y-o5mqvb1CEf20Yy7BmTk8lo",
+  //   imageAlt: "Web3 Chat App Preview",
+  //   lastCommit: "Last commit: 5h ago",
+  //   primaryAction: { label: "Launch App", icon: "open_in_new" },
+  //   secondaryAction: { label: "Smart Contracts", icon: "code" },
+  // },
 ];
 
 export function ToolsSection() {
@@ -162,20 +179,51 @@ function ProjectCard({ project }: { project: Project }) {
 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-outline-variant mt-auto">
-          <button className="bg-background border border-primary text-primary font-mono text-[14px] py-3 px-6 hover:bg-primary hover:text-background transition-colors w-full sm:w-auto text-center flex justify-center items-center gap-2">
-            <span className="material-symbols-outlined text-[18px]">
-              {project.primaryAction.icon}
-            </span>
-            {project.primaryAction.label}
-          </button>
-          <button className="bg-background border border-outline-variant text-on-surface font-mono text-[14px] py-3 px-6 hover:border-on-surface transition-colors w-full sm:w-auto text-center flex justify-center items-center gap-2">
-            {project.secondaryAction.icon && (
+          {project.primaryAction.href ? (
+            <a
+              href={project.primaryAction.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-background border border-primary text-primary font-mono text-[14px] py-3 px-6 hover:bg-primary hover:text-background transition-colors w-full sm:w-auto text-center flex justify-center items-center gap-2"
+            >
               <span className="material-symbols-outlined text-[18px]">
-                {project.secondaryAction.icon}
+                {project.primaryAction.icon}
               </span>
-            )}
-            {project.secondaryAction.label}
-          </button>
+              {project.primaryAction.label}
+            </a>
+          ) : (
+            <button className="bg-background border border-primary text-primary font-mono text-[14px] py-3 px-6 hover:bg-primary hover:text-background transition-colors w-full sm:w-auto text-center flex justify-center items-center gap-2">
+              <span className="material-symbols-outlined text-[18px]">
+                {project.primaryAction.icon}
+              </span>
+              {project.primaryAction.label}
+            </button>
+          )}
+
+          {project.secondaryAction.href ? (
+            <a
+              href={project.secondaryAction.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-background border border-outline-variant text-on-surface font-mono text-[14px] py-3 px-6 hover:border-on-surface transition-colors w-full sm:w-auto text-center flex justify-center items-center gap-2"
+            >
+              {project.secondaryAction.icon && (
+                <span className="material-symbols-outlined text-[18px]">
+                  {project.secondaryAction.icon}
+                </span>
+              )}
+              {project.secondaryAction.label}
+            </a>
+          ) : (
+            <button className="bg-background border border-outline-variant text-on-surface font-mono text-[14px] py-3 px-6 hover:border-on-surface transition-colors w-full sm:w-auto text-center flex justify-center items-center gap-2">
+              {project.secondaryAction.icon && (
+                <span className="material-symbols-outlined text-[18px]">
+                  {project.secondaryAction.icon}
+                </span>
+              )}
+              {project.secondaryAction.label}
+            </button>
+          )}
         </div>
       </div>
     </article>

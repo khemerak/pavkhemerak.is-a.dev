@@ -49,19 +49,19 @@ const HeroDescription: React.FC = () => (
 );
 
 const CallToActionButtons: React.FC = () => (
-  <div className="flex flex-col md:flex-row gap-3 md:gap-4 mt-4 md:mt-8">
-    <button className="w-full md:w-auto bg-[#0D0D0D] text-[#00E5FF] border border-[#00E5FF] px-4 md:px-8 py-3 font-label-caps text-label-caps uppercase hover:bg-[#00E5FF] hover:text-[#0D0D0D] transition-colors duration-200 flex items-center justify-center gap-2">
-      <span className="material-symbols-outlined text-[18px] md:hidden">terminal</span>
-      <span className="md:hidden">Deploy Projects</span>
-      <span className="hidden md:inline">Deploy Projects</span>
+  <div className="flex flex-row gap-3 md:gap-4 mt-4 md:mt-8">
+    <a href="#tools" className="flex-1 md:flex-none md:w-auto bg-[#0D0D0D] text-[#00E5FF] border border-[#00E5FF] px-2 md:px-8 py-3 font-label-caps text-[11px] md:text-label-caps uppercase hover:bg-[#00E5FF] hover:text-[#0D0D0D] transition-colors duration-200 flex items-center justify-center gap-1.5 md:gap-2">
+      <span className="material-symbols-outlined text-[16px] md:hidden">terminal</span>
+      <span className="md:hidden">Projects</span>
+      <span className="hidden md:inline">View Projects</span>
       <span className="material-symbols-outlined text-[16px] hidden md:inline">
         arrow_forward
       </span>
-    </button>
-    <button className="w-full md:w-auto bg-[#1A1A1A] md:bg-[#0D0D0D] text-white border border-[#333333] px-4 md:px-8 py-3 font-label-caps text-label-caps uppercase hover:border-white transition-colors duration-200 flex items-center justify-center gap-2">
-      <span className="material-symbols-outlined text-[18px] md:hidden">download</span>
-      <span className="md:hidden">Fetch Resume</span>
+    </a>
+    <a href="/assets/resume.pdf" download className="flex-1 md:flex-none md:w-auto bg-[#1A1A1A] md:bg-[#0D0D0D] text-white border border-[#333333] px-2 md:px-8 py-3 font-label-caps text-[11px] md:text-label-caps uppercase hover:border-white transition-colors duration-200 flex items-center justify-center gap-1.5 md:gap-2">
+      <span className="material-symbols-outlined text-[16px] md:hidden">download</span>
+      <span className="md:hidden">Resume</span>
       <span className="hidden md:inline">Fetch Resume</span>
-    </button>
+    </a>
   </div>
 );

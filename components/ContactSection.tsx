@@ -1,6 +1,40 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 
 export function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    priority: "GENERAL_CORRESPONDENCE",
+    message: ""
+  });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) return;
+    
+    setStatus("loading");
+    
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      
+      if (!res.ok) throw new Error("Transmission failed");
+      
+      setStatus("success");
+      setFormData({ name: "", email: "", priority: "GENERAL_CORRESPONDENCE", message: "" });
+      
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch (err) {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
+    }
+  };
   return (
     <section id="contact" className="w-full max-w-[1280px] mx-auto px-5 md:px-16 py-10 md:py-16 scroll-mt-24">
       {/* Main Content Area */}
@@ -24,7 +58,7 @@ export function ContactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12">
           {/* Contact Form Section */}
           <div className="lg:col-span-8 border-b lg:border-b-0 lg:border-r border-outline-variant p-8 md:p-12">
-            <form className="space-y-8">
+            <form className="space-y-8" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2">
                   <label className="block font-mono text-[12px] uppercase text-outline">
@@ -34,6 +68,9 @@ export function ContactSection() {
                     className="w-full bg-surface-terminal border border-outline-variant p-4 font-mono text-[14px] text-on-surface transition-all placeholder:text-outline focus:border-primary focus:ring-1 focus:ring-primary outline-none"
                     placeholder="FULL_NAME"
                     type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   />
                 </div>
                 <div className="space-y-2">
@@ -44,6 +81,9 @@ export function ContactSection() {
                     className="w-full bg-surface-terminal border border-outline-variant p-4 font-mono text-[14px] text-on-surface transition-all placeholder:text-outline focus:border-primary focus:ring-1 focus:ring-primary outline-none"
                     placeholder="EMAIL@DOMAIN.COM"
                     type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
                 </div>
               </div>
@@ -51,11 +91,15 @@ export function ContactSection() {
                 <label className="block font-mono text-[12px] uppercase text-outline">
                   Transmission_Priority
                 </label>
-                <select className="w-full bg-surface-terminal border border-outline-variant p-4 font-mono text-[14px] text-on-surface transition-all focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none cursor-pointer">
-                  <option>GENERAL_CORRESPONDENCE</option>
-                  <option>PROJECT_INQUIRY</option>
-                  <option>TECHNICAL_CONSULTATION</option>
-                  <option>SECURITY_DISCLOSURE</option>
+                <select 
+                  className="w-full bg-surface-terminal border border-outline-variant p-4 font-mono text-[14px] text-on-surface transition-all focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none cursor-pointer"
+                  value={formData.priority}
+                  onChange={(e) => setFormData({ ...formData, priority: e.target.value })}
+                >
+                  <option value="GENERAL_CORRESPONDENCE">GENERAL_CORRESPONDENCE</option>
+                  <option value="PROJECT_INQUIRY">PROJECT_INQUIRY</option>
+                  <option value="TECHNICAL_CONSULTATION">TECHNICAL_CONSULTATION</option>
+                  <option value="SECURITY_DISCLOSURE">SECURITY_DISCLOSURE</option>
                 </select>
               </div>
               <div className="space-y-2">
@@ -66,13 +110,17 @@ export function ContactSection() {
                   className="w-full bg-surface-terminal border border-outline-variant p-4 font-mono text-[14px] text-on-surface transition-all placeholder:text-outline resize-none focus:border-primary focus:ring-1 focus:ring-primary outline-none"
                   placeholder="ENTER_ENCRYPTED_MESSAGE..."
                   rows={6}
+                  required
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 ></textarea>
               </div>
               <button
-                className="w-full md:w-auto px-12 py-4 bg-background border border-primary text-primary font-mono text-[14px] uppercase tracking-widest hover:bg-primary hover:text-background transition-colors active:translate-x-[2px] active:translate-y-[2px]"
-                type="button"
+                className="w-full md:w-auto px-12 py-4 bg-background border border-primary text-primary font-mono text-[14px] uppercase tracking-widest hover:bg-primary hover:text-background transition-colors active:translate-x-[2px] active:translate-y-[2px] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-background disabled:hover:text-primary"
+                type="submit"
+                disabled={status === "loading"}
               >
-                SEND MESSAGE
+                {status === "loading" ? "TRANSMITTING..." : status === "success" ? "DELIVERED" : status === "error" ? "FAILED_RETRY" : "SEND MESSAGE"}
               </button>
             </form>
           </div>

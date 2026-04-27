@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useRef, useEffect } from "react";
 
 export function SkillsSection() {
   return (
@@ -35,7 +37,7 @@ export function SkillsSection() {
       </div>
 
       {/* Mobile: Additional skill categories */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 md:hidden">
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 md:hidden">
         <SkillTagCard
           title="Architecture"
           filename="sys/Architecture.yml"
@@ -55,7 +57,7 @@ export function SkillsSection() {
             "MONGODB",
           ]}
         />
-      </div>
+      </div> */}
     </section>
   );
 }
@@ -63,17 +65,105 @@ export function SkillsSection() {
 /* ========== Terminal Window: Foundations ========== */
 function FoundationsTerminal() {
   const languages = [
-    { keyword: "const", name: "JavaScript", delay: "" },
-    { keyword: "def", name: "Python", delay: "delay-75" },
-    { keyword: "public", name: "Java", delay: "delay-100" },
-    { keyword: "*", name: "C/C++", delay: "delay-150" },
-    { keyword: "using", name: "C#", delay: "delay-200" },
+    { keyword: "fn", name: "Rust", delay: "" },
+    { keyword: "const", name: "JavaScript", delay: "delay-75" },
+    { keyword: "def", name: "Python", delay: "delay-100" },
+    { keyword: "public", name: "Java", delay: "delay-150" },
+    { keyword: "*", name: "C/C++", delay: "delay-200" },
+    { keyword: "using", name: "C#", delay: "delay-250" },
     { keyword: "<?", name: "PHP", delay: "delay-300" },
     { keyword: "SELECT", name: "SQL", delay: "delay-500" },
+    { keyword: "template", name: "TypeScript", delay: "delay-100" },
+    { keyword: "#", name: "SHELL", delay: "delay-200" },
   ];
 
+  const [inputValue, setInputValue] = useState("");
+  const [history, setHistory] = useState<{ cmd: string; output: string }[]>([]);
+  const [isExecuting, setIsExecuting] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const terminalBodyRef = useRef<HTMLDivElement>(null);
+
+  const handleCommand = async (cmd: string) => {
+    const trimmed = cmd.trim().toLowerCase();
+    let output = "";
+
+    switch (trimmed) {
+      case "help":
+        output = "Available: help, whoami, ls, clear, skills, uname, date, echo <msg>, ping <host>";
+        break;
+      case "whoami":
+        output = "root — Pav Khemerak // Full-Stack Dev & Cyber Analyst";
+        break;
+      case "ls":
+        output = "foundations.sh  skills.cfg  projects/  certs/  .secrets";
+        break;
+      case "uname":
+      case "uname -a":
+        output = "PrzOS 4.2.0-cyber x86_64 GNU/Linux";
+        break;
+      case "date":
+        output = new Date().toUTCString();
+        break;
+      case "skills":
+        output = languages.map((l) => l.name).join(", ");
+        break;
+      case "clear":
+        setHistory([]);
+        setInputValue("");
+        return;
+      case "":
+        return;
+      default:
+        if (trimmed.startsWith("echo ")) {
+          output = cmd.trim().slice(5);
+        } else if (trimmed.startsWith("ping ")) {
+          const host = cmd.trim().slice(5);
+
+          setHistory((prev) => [...prev, { cmd: cmd.trim(), output: `Pinging ${host}...` }]);
+          setInputValue("");
+          setIsExecuting(true);
+
+          try {
+            const res = await fetch(`/api/ping?host=${encodeURIComponent(host)}`);
+            const data = await res.json();
+
+            setHistory((prev) => {
+              const newHist = [...prev];
+              newHist[newHist.length - 1].output = data.output || data.error || "Unknown error occurred.";
+              return newHist;
+            });
+          } catch (e) {
+            setHistory((prev) => {
+              const newHist = [...prev];
+              newHist[newHist.length - 1].output = "Error: Failed to connect to ping API.";
+              return newHist;
+            });
+          } finally {
+            setIsExecuting(false);
+            // Ensure we focus back after executing if the user is still interacting
+            setTimeout(() => inputRef.current?.focus(), 0);
+          }
+          return;
+        } else {
+          output = `command not found: ${trimmed}. Type 'help' for available commands.`;
+        }
+    }
+
+    setHistory((prev) => [...prev, { cmd: cmd.trim(), output }]);
+    setInputValue("");
+  };
+
+  useEffect(() => {
+    if (terminalBodyRef.current) {
+      terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
+    }
+  }, [history]);
+
   return (
-    <div className="bg-[#080808] border border-[#333333] relative overflow-hidden h-full flex flex-col group">
+    <div
+      className="bg-[#080808] border border-[#333333] relative overflow-hidden h-full flex flex-col group cursor-text"
+      onClick={() => !isExecuting && inputRef.current?.focus()}
+    >
       <div className="scanline-overlay absolute inset-0"></div>
       {/* Terminal Header */}
       <div className="border-b border-[#333333] px-4 py-2 flex items-center justify-between bg-[#111]">
@@ -83,16 +173,20 @@ function FoundationsTerminal() {
           <div className="w-3 h-3 rounded-full border border-[#333333] bg-[#222]"></div>
         </div>
         <span className="font-mono text-[14px] text-zinc-500">
-          ~/system/foundations.sh
+          ~/portfolio/frontend.sh
         </span>
         <span className="material-symbols-outlined text-zinc-500 text-sm">
           code
         </span>
       </div>
       {/* Terminal Body */}
-      <div className="p-6 font-mono text-[14px] leading-loose relative z-20 flex-grow flex flex-col justify-center">
+      <div
+        ref={terminalBodyRef}
+        className="p-6 font-mono text-[14px] leading-loose relative z-20 flex-grow flex flex-col overflow-y-auto scrollbar-terminal"
+        style={{ maxHeight: "400px" }}
+      >
         <div className="text-zinc-500 mb-4"># Core Language Competencies</div>
-        <div className="flex flex-wrap gap-x-6 gap-y-4">
+        <div className="flex flex-wrap gap-x-6 gap-y-4 mb-6">
           {languages.map(({ keyword, name, delay }) => (
             <div
               key={name}
@@ -105,10 +199,36 @@ function FoundationsTerminal() {
             </div>
           ))}
         </div>
-        <div className="mt-8 flex items-center animate-pulse">
-          <span className="text-primary mr-2">root@pavkhemerak:~#</span>
-          <span className="w-2 h-4 bg-primary inline-block"></span>
-        </div>
+
+        {/* Command History */}
+        {history.map((entry, i) => (
+          <div key={i} className="mb-2">
+            <div className="flex items-center">
+              <span className="text-primary mr-2">root@pavkhemerak:~#</span>
+              <span className="text-on-surface">{entry.cmd}</span>
+            </div>
+            <div className="text-zinc-400 pl-0 mt-0.5 whitespace-pre-wrap">{entry.output}</div>
+          </div>
+        ))}
+
+        {/* Active Input Line */}
+        {!isExecuting && (
+          <div className="mt-2 flex items-center">
+            <span className="text-primary mr-2 flex-shrink-0">root@pavkhemerak:~#</span>
+            <input
+              ref={inputRef}
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleCommand(inputValue);
+              }}
+              className="bg-transparent border-none outline-none text-on-surface font-mono text-[14px] w-full caret-primary"
+              spellCheck={false}
+              autoComplete="off"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -9,17 +9,26 @@ interface NavItemProps {
   icon: string;
   label: string;
   isActive: boolean;
+  isSamePage: boolean;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ href, icon, label, isActive }) => {
+const NavItem: React.FC<NavItemProps> = ({ href, icon, label, isActive, isSamePage }) => {
+  const className = `flex-1 flex flex-col items-center justify-center h-full gap-1 transition-colors ${isActive
+      ? "text-[#00E5FF] bg-[#151d1e] border-t-2 border-[#00E5FF] pt-1"
+      : "text-outline hover:text-white pt-[6px]"
+    }`;
+
+  if (href.startsWith("/#") && isSamePage) {
+    return (
+      <a href={href.replace("/", "")} className={className}>
+        <span className="material-symbols-outlined text-[24px]">{icon}</span>
+        <span className="font-label-caps text-[10px]">{label}</span>
+      </a>
+    );
+  }
+
   return (
-    <Link
-      href={href}
-      className={`flex-1 flex flex-col items-center justify-center h-full gap-1 transition-colors ${isActive
-          ? "text-[#00E5FF] bg-[#151d1e] border-t-2 border-[#00E5FF] pt-1"
-          : "text-outline hover:text-white pt-[6px]"
-        }`}
-    >
+    <Link href={href} className={className}>
       <span className="material-symbols-outlined text-[24px]">{icon}</span>
       <span className="font-label-caps text-[10px]">{label}</span>
     </Link>
@@ -80,10 +89,10 @@ export const BottomNavBar: React.FC = () => {
 
   return (
     <nav className="fixed bottom-0 w-full z-50 flex justify-between items-center bg-[#0D0D0D] border-t border-[#333333] md:hidden h-16">
-      <NavItem href="/" icon="folder" label="Projects" isActive={getIsActive("/")} />
-      <NavItem href="/#profile" icon="person" label="Profile" isActive={getIsActive("/#profile")} />
-      <NavItem href="/#tools" icon="terminal" label="Stack" isActive={getIsActive("/#tools")} />
-      <NavItem href="/blog" icon="article" label="Blog" isActive={getIsActive("/blog")} />
+      <NavItem href="/" icon="folder" label="Projects" isActive={getIsActive("/")} isSamePage={pathname === "/"} />
+      <NavItem href="/#profile" icon="person" label="Profile" isActive={getIsActive("/#profile")} isSamePage={pathname === "/"} />
+      <NavItem href="/#tools" icon="terminal" label="Stack" isActive={getIsActive("/#tools")} isSamePage={pathname === "/"} />
+      <NavItem href="/blog" icon="article" label="Blog" isActive={getIsActive("/blog")} isSamePage={pathname === "/"} />
     </nav>
   );
 };

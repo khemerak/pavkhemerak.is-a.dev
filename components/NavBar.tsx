@@ -8,18 +8,25 @@ interface NavLinkProps {
   href: string;
   children: React.ReactNode;
   isActive: boolean;
+  isSamePage: boolean;
 }
 
-const NavLink: React.FC<NavLinkProps> = ({ href, children, isActive }) => {
+const NavLink: React.FC<NavLinkProps> = ({ href, children, isActive, isSamePage }) => {
+  const className = `label-caps transition-all duration-200 active:scale-95 ${isActive
+      ? "text-primary border-b border-primary pb-1"
+      : "text-outline hover:text-primary cursor-crosshair"
+    }`;
+
+  if (href.startsWith("/#") && isSamePage) {
+    return (
+      <a className={className} href={href.replace("/", "")}>
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <Link
-      className={`label-caps transition-all duration-200 active:scale-95 ${
-        isActive
-          ? "text-primary border-b border-primary pb-1"
-          : "text-outline hover:text-primary cursor-crosshair"
-      }`}
-      href={href}
-    >
+    <Link className={className} href={href}>
       {children}
     </Link>
   );
@@ -43,7 +50,7 @@ export const NavBar: React.FC = () => {
           }
         });
       },
-      { rootMargin: "-30% 0px -70% 0px" } // Adjust these margins to trigger active state nicely
+      { rootMargin: "-30% 0px -70% 0px" }
     );
 
     const sections = ["profile", "tools"];
@@ -87,19 +94,28 @@ export const NavBar: React.FC = () => {
           pavkhemerak.dev
         </Link>
         <div className="hidden md:flex gap-6">
-          <NavLink href="/" isActive={getIsActive("/")}>Home</NavLink>
-          <NavLink href="/#profile" isActive={getIsActive("/#profile")}>Profile</NavLink>
-          <NavLink href="/#tools" isActive={getIsActive("/#tools")}>Tools</NavLink>
-          <NavLink href="/blog" isActive={getIsActive("/blog")}>Blog</NavLink>
+          <NavLink href="/" isActive={getIsActive("/")} isSamePage={pathname === "/"}>Home</NavLink>
+          <NavLink href="/#profile" isActive={getIsActive("/#profile")} isSamePage={pathname === "/"}>Profile</NavLink>
+          <NavLink href="/#tools" isActive={getIsActive("/#tools")} isSamePage={pathname === "/"}>Tools</NavLink>
+          <NavLink href="/blog" isActive={getIsActive("/blog")} isSamePage={pathname === "/"}>Blog</NavLink>
         </div>
       </div>
       <div className="flex items-center gap-4">
-        <Link
-          href="/#contact"
-          className="bg-background text-primary border border-primary px-3 py-1.5 md:px-8 md:py-3 text-sm md:text-base font-label-caps uppercase hover:bg-primary hover:text-background transition-colors flex-shrink-0 active:translate-x-[2px] active:translate-y-[2px] text-center"
-        >
-          Connect
-        </Link>
+        {pathname === "/" ? (
+          <a
+            href="#contact"
+            className="bg-background text-primary border border-primary px-3 py-1.5 md:px-8 md:py-3 text-sm md:text-base font-label-caps uppercase hover:bg-primary hover:text-background transition-colors flex-shrink-0 active:translate-x-[2px] active:translate-y-[2px] text-center"
+          >
+            Connect
+          </a>
+        ) : (
+          <Link
+            href="/#contact"
+            className="bg-background text-primary border border-primary px-3 py-1.5 md:px-8 md:py-3 text-sm md:text-base font-label-caps uppercase hover:bg-primary hover:text-background transition-colors flex-shrink-0 active:translate-x-[2px] active:translate-y-[2px] text-center"
+          >
+            Connect
+          </Link>
+        )}
       </div>
     </nav>
   );

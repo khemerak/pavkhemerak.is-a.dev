@@ -114,6 +114,15 @@ export default function BlogPage() {
           </span>
         </p>
 
+        {/* Construction Notice */}
+        <div className="mt-6 p-4 bg-surface-terminal border-l-4 border-l-secondary border border-outline-variant text-on-surface flex items-start gap-3 max-w-3xl">
+          <span className="material-symbols-outlined text-secondary mt-0.5">warning</span>
+          <div className="font-mono text-[13px] leading-relaxed">
+            <strong className="block text-secondary mb-1 uppercase tracking-wider">System_Notice: Under_Construction</strong>
+            The blog module is currently under active development. All posts displayed below are static, hard-coded placeholders used for architectural demonstration.
+          </div>
+        </div>
+
         {/* Filters (desktop only) */}
         <div className="mt-8 hidden md:flex flex-wrap gap-4">
           {filters.map((filter, i) => (

@@ -9,27 +9,27 @@ export const FeaturedDeployments: React.FC = () => {
         <SectionHeader />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           <DeploymentCard
-            title="Etherscan Bot Analyzer"
-            description="Real-time MEV bot tracking and transaction analysis engine built for high-frequency trading data aggregation."
-            tags={["Rust", "Go", "PostgreSQL"]}
-            status="Active"
-            type="Web3"
-            imageUrl="https://lh3.googleusercontent.com/aida-public/AB6AXuCPd8HJ7vqkiVtpjmMxHGzvMsMrXrs3DjW4IW47JUI9BLyC1Eut38oaQnwq0fxI5ndF3fwrWERg6SHBel6D6dso0oe-s5beSYGx5RRyPdMfYcdJMcuj8gzQqlWXQ7g-OiacUiCIXn3889TOq8UKGbeMhdg2sjqj-hGOOxyzqZqeCNDfuSDDTb3QvMZ8AbVA5NZIJxnzmE2HNIBFoA04lTP3t4q01wkG5s6l6-RuGHYuUd85V8MiY78mGuXsiFaUlZGXCs3Mn41m8XU"
-            imageAlt="Etherscan Bot Analyzer preview"
-            dataAlt="Dark computer screen showing complex lines of code and glowing green terminal output in a dark room"
+            title="Ket — Fast, Interactive Download Manager"
+            description="A minimalist, high-velocity CLI utility designed for organizing and retrieving technical snippets and study resources. Built to integrate seamlessly with tiling window managers and Linux-based workflows."
+            tags={["Rust", "Shell", "CLI"]}
+            status="Stable"
+            type="Tool"
+            imageUrl="/assets/img/ket.png"
+            imageAlt="Ket CLI Tool Preview"
+            dataAlt="Ket CLI Tool Preview"
           />
           <DeploymentCard
-            title="Decentralized Web3 Chat"
-            description="End-to-end encrypted messaging protocol utilizing IPFS for storage and Ethereum for identity verification."
-            tags={["React", "Solidity", "IPFS"]}
-            status="Deployed"
-            type="P2P"
-            imageUrl="https://lh3.googleusercontent.com/aida-public/AB6AXuBSxDNhr4IFLj4TdsTp_1kchUS3GF1F1gh29QM8ZIcaigDyUnJgJcgiU9uwGZ6FfWUPY_eaMJtBrOiaRDiJGinQ_OrDGUbt_6PhSbqtBpat1gadddKznrD0hvC1hzgyXokkjBywWuvp0RiUMzwFercLvaOwDUWIEOOzDuS8tUqBCPUg7YFD4BhOpz_H-fBWP0BsKC3rIMamm8Wmjc6-HWGdPsFJIyeiyIOSy9TuOr4EdPnx8ht5cNCdOJBEY0A61OPKzlLuuec1p6g"
-            imageAlt="Decentralized Web3 Chat preview"
-            dataAlt="Abstract digital visualization of connected nodes resembling a decentralized network on a dark background"
+            title="Arch Linux — Hyprland Rice"
+            description="A highly customized Linux environment featuring automated deployment scripts, tiling window manager configurations, and optimized system performance. Focuses on a 'keyboard-centric' developer workflow."
+            tags={["Arch Linux", "Bash", "Dotfiles", "WM"]}
+            status="Maintained"
+            type="Env"
+            imageUrl="/assets/img/dotfiles.jpg" // Recommendation: Use a clean screenshot of your terminal or Neofetch
+            imageAlt="Arch Linux Desktop Configuration Preview"
+            dataAlt="A sleek terminal interface showing system statistics and a tiling window manager setup"
           />
         </div>
-        
+
         <button className="md:hidden w-full mt-6 bg-transparent text-white border border-[#333333] py-3 px-4 font-label-caps text-label-caps uppercase hover:border-primary hover:text-primary transition-colors flex items-center justify-center gap-2">
           View All Projects
           <span className="material-symbols-outlined text-[16px]">arrow_forward</span>

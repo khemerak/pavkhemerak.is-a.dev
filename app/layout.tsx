@@ -23,7 +23,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-[#0D0D0D] text-on-surface font-body text-body selection:bg-primary-container selection:text-background min-h-screen flex flex-col antialiased pb-16 md:pb-0">
+      <body className="bg-[#0D0D0D] text-on-surface font-body text-body selection:bg-primary-container selection:text-background min-h-screen flex flex-col antialiased pb-16 md:pb-0 scrollbar-terminal">
         <NavBar />
         <main className="grow pt-16 md:pt-20 pb-0">{children}</main>
         <Footer />

@@ -52,6 +52,10 @@
 }
 
 @layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
     * {
         @apply border-border;
         border-radius: 0 !important; /* Global enforcement of 0px shapes */
@@ -180,5 +184,20 @@
         border-color: #00E5FF;
         transform: translate(-2px, -2px);
         box-shadow: 4px 4px 0px 0px rgba(51,51,51,1);
+    }
+    /* Terminal Custom Scrollbar */
+    .scrollbar-terminal::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+    .scrollbar-terminal::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .scrollbar-terminal::-webkit-scrollbar-thumb {
+        background: var(--color-outline-variant);
+        border-radius: 0px;
+    }
+    .scrollbar-terminal::-webkit-scrollbar-thumb:hover {
+        background: var(--color-primary);
     }
 }

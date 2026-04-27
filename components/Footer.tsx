@@ -21,14 +21,14 @@ export const Footer: React.FC = () => {
           LinkedIn
         </Link>
         <Link
-          href="#"
+          href="https://github.com/khemerak/pavkhemerak.dev-frontend.git"
           className="font-mono-code text-[10px] uppercase tracking-widest text-neutral-600 hover:text-white transition-colors px-2 py-1 border border-transparent hover:border-[#333333] md:px-0 md:py-0 md:border-0 md:hover:border-transparent md:hover:translate-x-1 duration-300"
         >
           Source Code
         </Link>
       </div>
       <div className="font-mono-code text-[10px] uppercase tracking-widest text-[#00E5FF] mt-4 md:mt-0 text-center">
-        © 2024 PAVKHEMERAK. ALL RIGHTS RESERVED.
+        © 2025 PAVKHEMERAK. ALL RIGHTS RESERVED.
       </div>
     </footer>
   );

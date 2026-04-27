@@ -1,67 +1,34 @@
-# pavkhemerak.dev
+# PAVKHEMERAK.DEV
 
-The personal portfolio and technical blog of **Pavkhemerak**. Built for precision, performance, and aggressive minimalism.
+The digital headquarters and technical portfolio of **Pavkhemerak**. Engineered for precision, performance, and aggressive minimalism.
 
-This frontend application showcases a "Cyber-Architect" brutalist aesthetic—featuring high-contrast terminal-style interfaces, structural grids, and zero border-radius elements.
+This frontend application serves as a central node for a "Cyber-Architect" identity—featuring high-contrast terminal-style interfaces, structural grids, and zero-radius elements.
 
-## Tech Stack
+## Architecture & Stack
 
-- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
-- **Library**: [React 19](https://react.dev/)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Core**: Next.js 16 (App Router) & React 19
+- **Styling**: Tailwind CSS v4 (Neo-Brutalist configuration)
 - **Typography**: Inter (Sans) & Space Grotesk (Mono)
-- **Icons**: Google Material Symbols
-- **Design System**: Stitch Obsidian Cyber Minimalist
+- **Design Language**: Stitch Obsidian Cyber Minimalist
 
-## Features
+## System Modules
 
-- **Single Page Architecture**: Seamless vertical scrolling navigation between system modules.
-- **Background Profile Section**: A comprehensive "Cyber-Analyst" identity module featuring technical architecture stats and professional timelines.
-- **Responsive Neo-Brutalist Design**: A unique dark-mode UI with sharp edges (0px border-radius), "Cyber Cyan" accents, and ghost-border hover effects.
-- **Terminal Aesthetics**: Simulated terminal windows with scanline overlays and syntax-highlighted code blocks for displaying skills and experience.
-- **Project Showcase**: A gallery of technical experiments and applications with status badges and technology tags.
-- **Mobile-Optimized**: Dedicated bottom navigation bar for mobile devices ensuring a seamless experience across all screen sizes.
+- **Single Page Architecture**: Seamless vertical traversal between core system components.
+- **Identity Module**: A comprehensive "Cyber-Analyst" profile featuring technical architecture statistics and a professional timeline matrix.
+- **Terminal Simulator**: Interactive terminal environments with scanline overlays and syntax-highlighted execution blocks for demonstrating technical proficiencies.
+- **Deployment Showcase**: A gallery of technical experiments and applications featuring status tracking and technology vector tags.
+- **Mobile Handshake**: Dedicated mobile navigation protocols ensuring a seamless experience across all endpoints.
 
 ## Project Structure
 
-- `app/`: Next.js App Router core. Contains the main `page.tsx` as the SPA entry point.
-- `components/`: Modularized React components following the brutalist design system.
-  - `HeroSection.tsx`: Core identity and intro.
-  - `BackgroundProfileSection.tsx`: Detailed identity, skills matrix, and timeline.
-  - `ExperienceSection.tsx`: Professional history module.
-  - `FeaturedDeployments.tsx`: Project showcase.
-  - `SkillsSection.tsx`: Technical proficiency terminal.
-- `public/`: Static assets.
-
-## Getting Started
-
-First, install the dependencies using `pnpm` (recommended):
-
-```bash
-pnpm install
-```
-
-Then, run the development server:
-
-```bash
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Building for Production
-
-To create an optimized production build:
-
-```bash
-pnpm build
-```
-
-To test the production build locally:
-
-```bash
-pnpm start
-```
+- `app/`: Next.js App Router core routing and primary SPA entry vector.
+- `components/`: Modular React components conforming to the brutalist design system.
+  - `HeroSection.tsx`: Primary transmission and call-to-action block.
+  - `BackgroundProfileSection.tsx`: Identity matrix and historical timeline.
+  - `ExperienceSection.tsx`: Professional operation history.
+  - `FeaturedDeployments.tsx`: Project and architecture showcase.
+  - `SkillsSection.tsx`: Interactive technical proficiency terminal.
+- `public/`: Static data payloads and visual assets.
 
 ## License
 

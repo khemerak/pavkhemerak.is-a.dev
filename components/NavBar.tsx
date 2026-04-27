@@ -13,8 +13,8 @@ interface NavLinkProps {
 
 const NavLink: React.FC<NavLinkProps> = ({ href, children, isActive, isSamePage }) => {
   const className = `label-caps transition-all duration-200 active:scale-95 ${isActive
-      ? "text-primary border-b border-primary pb-1"
-      : "text-outline hover:text-primary cursor-crosshair"
+    ? "text-primary border-b border-primary pb-1"
+    : "text-outline hover:text-primary cursor-crosshair"
     }`;
 
   if (href.startsWith("/#") && isSamePage) {
@@ -91,7 +91,7 @@ export const NavBar: React.FC = () => {
           className="text-xl font-black text-foreground tracking-widest uppercase truncate"
           href="/"
         >
-          pavkhemerak.dev
+          pavkhemerak
         </Link>
         <div className="hidden md:flex gap-6">
           <NavLink href="/" isActive={getIsActive("/")} isSamePage={pathname === "/"}>Home</NavLink>

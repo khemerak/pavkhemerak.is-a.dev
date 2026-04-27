@@ -5,7 +5,7 @@ export const Footer: React.FC = () => {
   return (
     <footer className="w-full flex flex-col items-center px-4 py-8 gap-6 bg-[#0D0D0D] border-t border-[#333333] mt-8 md:flex-row md:justify-between md:px-8 md:py-12 md:mt-0">
       <div className="text-lg font-black text-white uppercase tracking-widest">
-        pavkhemerak.dev
+        pavkhemerak
       </div>
       <div className="flex flex-wrap justify-center gap-4 w-full md:w-auto">
         <Link

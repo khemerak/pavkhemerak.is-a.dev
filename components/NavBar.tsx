@@ -1,18 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 interface NavLinkProps {
   href: string;
   children: React.ReactNode;
+  isActive: boolean;
 }
 
-const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
-  const pathname = usePathname();
-  const isActive = pathname === href || (href !== "/" && pathname?.startsWith(href));
-
+const NavLink: React.FC<NavLinkProps> = ({ href, children, isActive }) => {
   return (
     <Link
       className={`label-caps transition-all duration-200 active:scale-95 ${
@@ -28,6 +26,57 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
 };
 
 export const NavBar: React.FC = () => {
+  const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState<string>("");
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection("");
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-30% 0px -70% 0px" } // Adjust these margins to trigger active state nicely
+    );
+
+    const sections = ["profile", "tools"];
+    sections.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    const handleScroll = () => {
+      if (window.scrollY < 200) {
+        setActiveSection("");
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial scroll
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [pathname]);
+
+  const getIsActive = (href: string) => {
+    if (href.startsWith("/#")) {
+      const id = href.replace("/#", "");
+      return pathname === "/" && activeSection === id;
+    }
+    if (href === "/") {
+      return pathname === "/" && activeSection === "";
+    }
+    return pathname === href || (href !== "/" && pathname?.startsWith(href));
+  };
+
   return (
     <nav className="glass-nav flex justify-between items-center px-4 md:px-8 py-4 h-16">
       <div className="flex items-center gap-8 w-3/4 md:w-auto">
@@ -38,16 +87,19 @@ export const NavBar: React.FC = () => {
           pavkhemerak.dev
         </Link>
         <div className="hidden md:flex gap-6">
-          <NavLink href="/">Home</NavLink>
-          <NavLink href="/skills">Skills</NavLink>
-          <NavLink href="/tools">Tools</NavLink>
-          <NavLink href="/blog">Blog</NavLink>
+          <NavLink href="/" isActive={getIsActive("/")}>Home</NavLink>
+          <NavLink href="/#profile" isActive={getIsActive("/#profile")}>Profile</NavLink>
+          <NavLink href="/#tools" isActive={getIsActive("/#tools")}>Tools</NavLink>
+          <NavLink href="/blog" isActive={getIsActive("/blog")}>Blog</NavLink>
         </div>
       </div>
       <div className="flex items-center gap-4">
-        <button className="bg-background text-primary border border-primary px-3 py-1.5 md:px-8 md:py-3 text-sm md:text-base font-label-caps uppercase hover:bg-primary hover:text-background transition-colors flex-shrink-0 active:translate-x-[2px] active:translate-y-[2px]">
+        <Link
+          href="/#contact"
+          className="bg-background text-primary border border-primary px-3 py-1.5 md:px-8 md:py-3 text-sm md:text-base font-label-caps uppercase hover:bg-primary hover:text-background transition-colors flex-shrink-0 active:translate-x-[2px] active:translate-y-[2px] text-center"
+        >
           Connect
-        </button>
+        </Link>
       </div>
     </nav>
   );

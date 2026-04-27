@@ -15,16 +15,16 @@ export const ExperienceSection: React.FC = () => {
           </h2>
           <div className="flex flex-col gap-8 relative before:absolute before:inset-y-0 before:left-0 before:w-px before:bg-[#333333]">
             <TimelineItem
-              period="2022 - PRESENT"
-              title="Senior Infrastructure Engineer"
-              company="Nova Protocol"
-              description="Architected scalable event-driven microservices. Reduced latency by 40% across core trading engines."
+              period="2025 - PRESENT"
+              title="IT Officer"
+              company="Westbridge International School of Phnom Penh"
+              description="Responsible for maintaining the school's IT infrastructure, providing technical support to students and staff, and managing network security."
               isActive
             />
             <TimelineItem
-              period="2019 - 2022"
-              title="Backend Developer"
-              company="FinTech Solutions Inc."
+              period="2022 -2025"
+              title="Undergraduate of Computer Science and Engineering"
+              company="Royal University of Phnom Penh"
             />
           </div>
         </div>
@@ -86,17 +86,15 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
 }) => (
   <div className="relative pl-6 md:pl-8">
     <span
-      className={`absolute left-[-4px] top-2 w-2 h-2 md:w-3 md:h-3 rounded-none ${
-        isActive
-          ? "bg-primary border-2 border-primary"
-          : "bg-[#333333] border-2 border-[#333333]"
-      }`}
+      className={`absolute left-[-4px] top-2 w-2 h-2 md:w-3 md:h-3 rounded-none ${isActive
+        ? "bg-primary border-2 border-primary"
+        : "bg-[#333333] border-2 border-[#333333]"
+        }`}
     ></span>
     <div className="flex flex-col gap-1 md:gap-2">
       <span
-        className={`font-mono text-[12px] ${
-          isActive ? "text-primary" : "text-outline"
-        }`}
+        className={`font-mono text-[12px] ${isActive ? "text-primary" : "text-outline"
+          }`}
       >
         {period}
       </span>

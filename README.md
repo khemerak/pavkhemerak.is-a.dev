@@ -6,24 +6,31 @@ This frontend application showcases a "Cyber-Architect" brutalist aesthetic—fe
 
 ## Tech Stack
 
-- **Framework**: [Next.js](https://nextjs.org/) (App Router)
-- **Library**: [React](https://react.dev/)
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Library**: [React 19](https://react.dev/)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
 - **Typography**: Inter (Sans) & Space Grotesk (Mono)
 - **Icons**: Google Material Symbols
+- **Design System**: Stitch Obsidian Cyber Minimalist
 
 ## Features
 
-- **Responsive Neo-Brutalist Design**: A unique dark-mode UI with sharp edges (0px border-radius), "Cyber Cyan" (`#00E5FF`) accents, and ghost-border hover effects.
+- **Single Page Architecture**: Seamless vertical scrolling navigation between system modules.
+- **Background Profile Section**: A comprehensive "Cyber-Analyst" identity module featuring technical architecture stats and professional timelines.
+- **Responsive Neo-Brutalist Design**: A unique dark-mode UI with sharp edges (0px border-radius), "Cyber Cyan" accents, and ghost-border hover effects.
 - **Terminal Aesthetics**: Simulated terminal windows with scanline overlays and syntax-highlighted code blocks for displaying skills and experience.
 - **Project Showcase**: A gallery of technical experiments and applications with status badges and technology tags.
-- **Technical Blog**: A masonry-grid blog listing with filter capabilities and a rich article reader supporting code blocks, callouts, and blockquotes.
-- **Mobile-First Navigation**: Dedicated bottom navigation bar for mobile devices ensuring a seamless experience across all screen sizes.
+- **Mobile-Optimized**: Dedicated bottom navigation bar for mobile devices ensuring a seamless experience across all screen sizes.
 
 ## Project Structure
 
-- `app/`: Next.js App Router pages (Home, Skills, Tools, Blog) and global layout/CSS.
-- `components/`: Reusable React components (`NavBar`, `BottomNavBar`, `HeroSection`, `ExperienceSection`, `FeaturedDeployments`, etc.).
+- `app/`: Next.js App Router core. Contains the main `page.tsx` as the SPA entry point.
+- `components/`: Modularized React components following the brutalist design system.
+  - `HeroSection.tsx`: Core identity and intro.
+  - `BackgroundProfileSection.tsx`: Detailed identity, skills matrix, and timeline.
+  - `ExperienceSection.tsx`: Professional history module.
+  - `FeaturedDeployments.tsx`: Project showcase.
+  - `SkillsSection.tsx`: Technical proficiency terminal.
 - `public/`: Static assets.
 
 ## Getting Started
@@ -58,4 +65,4 @@ pnpm start
 
 ## License
 
-All rights reserved. © 2024 Pavkhemerak.
+All rights reserved. © 2026 Pavkhemerak.

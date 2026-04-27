@@ -1,12 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Tools & Projects - pavkhemerak.dev",
-  description:
-    "A showcase of technical experiments, open-source contributions, and production-ready applications.",
-};
 
 interface Project {
   title: string;
@@ -66,9 +59,9 @@ const projects: Project[] = [
   },
 ];
 
-export default function ToolsPage() {
+export function ToolsSection() {
   return (
-    <div className="w-full max-w-[1280px] mx-auto px-5 md:px-16 py-10 md:pt-16 md:pb-16">
+    <section id="tools" className="w-full max-w-[1280px] mx-auto px-5 md:px-16 py-10 md:pt-16 md:pb-16 scroll-mt-24">
       {/* Header Section */}
       <section className="mb-12 md:mb-16 border-b border-outline-variant pb-8">
         <h1 className="text-[40px] md:text-[64px] font-extrabold leading-[1.1] tracking-[-0.04em]">
@@ -103,7 +96,7 @@ export default function ToolsPage() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

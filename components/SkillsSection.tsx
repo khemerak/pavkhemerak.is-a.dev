@@ -1,15 +1,8 @@
 import React from "react";
-import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Skills - pavkhemerak.dev",
-  description:
-    "A technical manifest of languages, frameworks, and environments. Built for precision, performance, and aggressive minimalism.",
-};
-
-export default function SkillsPage() {
+export function SkillsSection() {
   return (
-    <div className="w-full max-w-[1280px] mx-auto px-5 md:px-16 py-10 md:py-12">
+    <section className="w-full max-w-[1280px] mx-auto px-5 md:px-16 py-10 md:py-12">
       {/* Page Header */}
       <header className="mb-10 md:mb-12 flex flex-col gap-2">
         <div className="font-mono text-[14px] text-primary flex items-center gap-2 md:hidden">
@@ -18,7 +11,7 @@ export default function SkillsPage() {
         </div>
         <h1 className="text-[40px] md:text-[64px] font-extrabold text-on-background leading-[1.1] tracking-[-0.04em]">
           <span className="md:hidden">Skill_Matrix</span>
-          <span className="hidden md:inline">SKILLS</span>
+          <span className="hidden md:inline">TECHNICAL SKILLS</span>
           <span className="text-primary animate-pulse">_</span>
         </h1>
         <p className="font-sans text-[16px] text-on-surface-variant max-w-2xl leading-[1.6] border-l-2 border-primary pl-4 mt-4 md:border-l-0 md:pl-0 md:mt-0">
@@ -63,7 +56,7 @@ export default function SkillsPage() {
           ]}
         />
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -124,7 +117,7 @@ function FoundationsTerminal() {
 /* ========== Linux Card ========== */
 function LinuxCard() {
   const items = [
-    { name: "Arch", label: "Daily Driver", labelColor: "text-tertiary bg-tertiary/10" },
+    { name: "Arch Linux / Windows", label: "Daily Driver", labelColor: "text-tertiary bg-tertiary/10" },
     { name: "Pop!_OS", label: "Secondary", labelColor: "text-zinc-500 bg-zinc-800/50" },
     { name: "i3wm / Hyprland", label: "WM/Compositor", labelColor: "text-primary bg-primary/10" },
   ];
@@ -162,7 +155,7 @@ function LinuxCard() {
 
 /* ========== Ecosystems Card ========== */
 function EcosystemsCard() {
-  const tags = ["Web3", "Solana (Rust)", "Next.js", "Spring Boot"];
+  const tags = ["Full-Stack Web Development", "Pentesting", "Next.js", "Spring Boot", "Solana (Rust)", "Web3", "AI", "Blockchain", "Cloud Computing"];
 
   return (
     <div className="bg-[#1A1A1A] border border-[#333333] p-6 group hover:border-primary transition-colors duration-300 relative h-full">

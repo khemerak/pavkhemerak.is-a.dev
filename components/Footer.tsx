@@ -9,13 +9,13 @@ export const Footer: React.FC = () => {
       </div>
       <div className="flex flex-wrap justify-center gap-4 w-full md:w-auto">
         <Link
-          href="#"
+          href="https://github.com/khemerak"
           className="font-mono-code text-[10px] uppercase tracking-widest text-neutral-600 hover:text-white transition-colors px-2 py-1 border border-transparent hover:border-[#333333] md:px-0 md:py-0 md:border-0 md:hover:border-transparent md:hover:translate-x-1 duration-300"
         >
           Github
         </Link>
         <Link
-          href="#"
+          href="https://www.linkedin.com/in/pav-khemerak-6b7270269/"
           className="font-mono-code text-[10px] uppercase tracking-widest text-neutral-600 hover:text-white transition-colors px-2 py-1 border border-transparent hover:border-[#333333] md:px-0 md:py-0 md:border-0 md:hover:border-transparent md:hover:translate-x-1 duration-300"
         >
           LinkedIn

@@ -44,9 +44,7 @@ const HeroTitle: React.FC = () => (
 
 const HeroDescription: React.FC = () => (
   <p className="font-body text-body md:font-mono-code md:text-mono-code text-outline max-w-2xl border-none md:border-l border-[#333333] md:pl-4">
-    Full-stack engineer specializing in high-performance distributed systems,
-    Web3 infrastructure, and low-latency financial protocols. Building raw,
-    unfiltered technical solutions for engineering teams.
+    Full-Stack Developer & Cybersecurity Analyst specializing in high-performance, hardened digital infrastructure. From developing scalable Spring Boot architectures to auditing OWASP vulnerabilities, I build systems designed to withstand the modern threat landscape.
   </p>
 );
 
@@ -55,7 +53,7 @@ const CallToActionButtons: React.FC = () => (
     <button className="w-full md:w-auto bg-[#0D0D0D] text-[#00E5FF] border border-[#00E5FF] px-4 md:px-8 py-3 font-label-caps text-label-caps uppercase hover:bg-[#00E5FF] hover:text-[#0D0D0D] transition-colors duration-200 flex items-center justify-center gap-2">
       <span className="material-symbols-outlined text-[18px] md:hidden">terminal</span>
       <span className="md:hidden">Deploy Projects</span>
-      <span className="hidden md:inline">VIEW_PROJECTS</span>
+      <span className="hidden md:inline">Deploy Projects</span>
       <span className="material-symbols-outlined text-[16px] hidden md:inline">
         arrow_forward
       </span>
@@ -63,7 +61,7 @@ const CallToActionButtons: React.FC = () => (
     <button className="w-full md:w-auto bg-[#1A1A1A] md:bg-[#0D0D0D] text-white border border-[#333333] px-4 md:px-8 py-3 font-label-caps text-label-caps uppercase hover:border-white transition-colors duration-200 flex items-center justify-center gap-2">
       <span className="material-symbols-outlined text-[18px] md:hidden">download</span>
       <span className="md:hidden">Fetch Resume</span>
-      <span className="hidden md:inline">GITHUB</span>
+      <span className="hidden md:inline">Fetch Resume</span>
     </button>
   </div>
 );

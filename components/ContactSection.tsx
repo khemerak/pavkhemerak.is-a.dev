@@ -14,21 +14,21 @@ export function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
-    
+
     setStatus("loading");
-    
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      
+
       if (!res.ok) throw new Error("Transmission failed");
-      
+
       setStatus("success");
       setFormData({ name: "", email: "", priority: "GENERAL_CORRESPONDENCE", message: "" });
-      
+
       setTimeout(() => setStatus("idle"), 5000);
     } catch (err) {
       setStatus("error");
@@ -91,7 +91,7 @@ export function ContactSection() {
                 <label className="block font-mono text-[12px] uppercase text-outline">
                   Transmission_Priority
                 </label>
-                <select 
+                <select
                   className="w-full bg-surface-terminal border border-outline-variant p-4 font-mono text-[14px] text-on-surface transition-all focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none cursor-pointer"
                   value={formData.priority}
                   onChange={(e) => setFormData({ ...formData, priority: e.target.value })}
@@ -152,7 +152,7 @@ export function ContactSection() {
                     pavkhemerak.official@gmail.com
                   </p>
                 </div>
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <span className="block font-mono text-[12px] text-secondary uppercase">
                     Encryption_Key
                   </span>
@@ -164,7 +164,7 @@ export function ContactSection() {
                       -----END PGP PUBLIC KEY BLOCK-----
                     </p>
                   </div>
-                </div>
+                </div> */}
               </section>
 
               {/* Social Links */}

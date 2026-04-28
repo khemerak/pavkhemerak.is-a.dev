@@ -73,7 +73,7 @@ function FoundationsTerminal() {
     { keyword: "using", name: "C#", delay: "delay-250" },
     { keyword: "<?", name: "PHP", delay: "delay-300" },
     { keyword: "SELECT", name: "SQL", delay: "delay-500" },
-    { keyword: "template", name: "TypeScript", delay: "delay-100" },
+    { keyword: "interface", name: "TypeScript", delay: "delay-100" },
     { keyword: "#", name: "SHELL", delay: "delay-200" },
   ];
 

@@ -7,7 +7,7 @@ export const FeaturedDeployments: React.FC = () => {
     <section className="border-b border-[#333333] px-4 py-12 md:px-8 md:py-24">
       <div className="max-w-[1280px] w-full mx-auto">
         <SectionHeader />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           <DeploymentCard
             title="Ket — Fast, Interactive Download Manager"
             description="A minimalist, high-velocity CLI utility designed for organizing and retrieving technical snippets and study resources. Built to integrate seamlessly with tiling window managers and Linux-based workflows."
@@ -17,6 +17,7 @@ export const FeaturedDeployments: React.FC = () => {
             imageUrl="/assets/img/ket.png"
             imageAlt="Ket CLI Tool Preview"
             dataAlt="Ket CLI Tool Preview"
+            priority
           />
           <DeploymentCard
             title="Arch Linux — Hyprland Rice"
@@ -24,9 +25,21 @@ export const FeaturedDeployments: React.FC = () => {
             tags={["Arch Linux", "Bash", "Dotfiles", "WM"]}
             status="Maintained"
             type="Env"
-            imageUrl="/assets/img/dotfiles.jpg" // Recommendation: Use a clean screenshot of your terminal or Neofetch
+            imageUrl="/assets/img/dotfiles.jpg"
             imageAlt="Arch Linux Desktop Configuration Preview"
             dataAlt="A sleek terminal interface showing system statistics and a tiling window manager setup"
+            priority
+          />
+          <DeploymentCard
+            title="Westbridge International School — Web Portal"
+            description="A comprehensive educational platform built for Westbridge International School of Phnom Penh. Features include Cambridge Curriculum integration, a responsive enrollment system, and a dynamic UI/UX designed for the academic community."
+            tags={["PHP", "JavaScript", "CSS"]}
+            status="Live"
+            type="Web"
+            imageUrl="/assets/img/wispp-preview.png"
+            imageAlt="Westbridge International School Official Website"
+            dataAlt="A professional landing page featuring the school's branding, enrollment call-to-actions, and curriculum highlights"
+            priority
           />
         </div>
 
@@ -64,6 +77,7 @@ interface DeploymentCardProps {
   imageUrl: string;
   imageAlt: string;
   dataAlt: string;
+  priority?: boolean;
 }
 
 const DeploymentCard: React.FC<DeploymentCardProps> = ({
@@ -75,6 +89,7 @@ const DeploymentCard: React.FC<DeploymentCardProps> = ({
   imageUrl,
   imageAlt,
   dataAlt,
+  priority = false,
 }) => {
   return (
     <article className="group bg-[#1A1A1A] border border-[#333333] hover:border-primary transition-colors duration-300 relative overflow-hidden md:overflow-visible">
@@ -84,7 +99,8 @@ const DeploymentCard: React.FC<DeploymentCardProps> = ({
           alt={imageAlt}
           src={imageUrl}
           fill
-          sizes="(max-width: 768px) 100vw, 50vw"
+          priority={priority}
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover opacity-60 md:grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-opacity md:transition-all mix-blend-luminosity md:mix-blend-normal group-hover:mix-blend-normal duration-500"
           data-alt={dataAlt}
         />

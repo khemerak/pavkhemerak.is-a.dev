@@ -11,7 +11,7 @@ interface Project {
   filename: string;
   imageUrl: string;
   imageAlt: string;
-  lastCommit: string;
+  priority?: boolean;
   primaryAction: { label: string; icon: string; href?: string };
   secondaryAction: { label: string; icon?: string; href?: string };
 }
@@ -20,7 +20,7 @@ const projects: Project[] = [
   {
     title: "Ket — Fast, Interactive Download Manager",
     description:
-      "A minimalist, high-velocity CLI utility designed for organizing and retrieving technical snippets and study resources. Built to integrate seamlessly with tiling window managers and Linux-based workflows.",
+      "A minimalist, high-velocity CLI utility designed for organizing and retrieving technical snippets and study resources.",
     tags: [
       { label: "SHELL", color: "text-secondary bg-secondary/10 border-secondary/30" },
       { label: "TOOL", color: "text-primary bg-primary/10 border-primary/30" },
@@ -32,10 +32,49 @@ const projects: Project[] = [
     filename: "ket.exe",
     imageUrl: "/assets/img/ket.png",
     imageAlt: "Ket CLI Tool Preview",
-    lastCommit: "Last commit: 1w ago",
+    priority: true,
+
     primaryAction: { label: "View Source", icon: "terminal", href: "https://github.com/khemerak/ket.git" },
     secondaryAction: { label: "Documentation", icon: "menu_book", href: "https://github.com/khemerak/ket.git" },
   },
+  {
+    title: "Arch Linux — Hyprland Rice",
+    description:
+      "A highly customized Linux environment featuring automated deployment scripts, tiling window manager configurations, and optimized system performance. Focuses on a 'keyboard-centric' developer workflow.",
+    tags: [
+      { label: "ARCH", color: "text-primary bg-primary/10 border-primary/30" },
+      { label: "HYPRLAND", color: "text-secondary bg-secondary/10 border-secondary/30" },
+      { label: "DOTFILES", color: "text-on-surface bg-outline-variant/20 border-outline-variant" },
+    ],
+    status: "MAINTAINED",
+    statusColor: "text-secondary-fixed-dim bg-secondary-fixed-dim/10",
+    language: "Bash & Lua",
+    filename: ".config",
+    imageUrl: "/assets/img/dotfiles.jpg",
+    imageAlt: "Arch Linux Desktop Configuration Preview",
+    primaryAction: { label: "View Source", icon: "terminal", href: "https://github.com/khemerak/dotfiles.git" },
+    secondaryAction: { label: "Setup Guide", icon: "settings", href: "https://github.com/khemerak/dotfiles.git" },
+  },
+  {
+    title: "WISPP — Official School Website",
+    description:
+      "A comprehensive, responsive web platform developed for Westbridge International School of Phnom Penh.",
+    tags: [
+      { label: "WEB", color: "text-primary bg-primary/10 border-primary/30" },
+      { label: "FULL-STACK", color: "text-secondary bg-secondary/10 border-secondary/30" },
+      { label: "EDUCATION", color: "text-on-surface bg-outline-variant/20 border-outline-variant" },
+    ],
+    status: "LIVE",
+    statusColor: "text-success-fixed-dim bg-success-fixed-dim/10",
+    language: "PHP / JavaScript",
+    filename: "wispp.edu.kh",
+    imageUrl: "/assets/img/wispp-preview.png",
+    imageAlt: "Westbridge International School Website Preview",
+
+    primaryAction: { label: "Live Demo", icon: "language", href: "https://wispp.edu.kh" },
+    secondaryAction: { label: "View Project", icon: "code", href: "https://wispp.edu.kh" },
+  },
+
   // {
   //   title: "Etherscan Bot Analyzer",
   //   description:
@@ -96,7 +135,7 @@ export function ToolsSection() {
       </section>
 
       {/* Projects Grid */}
-      <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-4">
+      <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-4">
         {projects.map((project) => (
           <ProjectCard key={project.title} project={project} />
         ))}
@@ -139,7 +178,8 @@ function ProjectCard({ project }: { project: Project }) {
           alt={project.imageAlt}
           src={project.imageUrl}
           fill
-          sizes="(max-width: 768px) 100vw, 50vw"
+          priority={project.priority}
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover opacity-80 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500"
         />
       </div>
@@ -171,10 +211,10 @@ function ProjectCard({ project }: { project: Project }) {
           </span>
         </div>
 
-        <h2 className="text-[24px] md:text-[32px] font-bold text-on-background mb-3 group-hover:text-primary transition-colors leading-tight">
+        <h2 className="text-[16px] md:text-[20px] font-bold text-on-background mb-3 group-hover:text-primary transition-colors leading-tight">
           {project.title}
         </h2>
-        <p className="font-sans text-[16px] text-on-surface-variant leading-[1.6] mb-6">
+        <p className="font-sans text-[14px] text-on-surface-variant leading-[1.6] mb-6">
           {project.description}
         </p>
 

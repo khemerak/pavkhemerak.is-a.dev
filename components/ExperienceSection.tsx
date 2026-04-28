@@ -41,7 +41,6 @@ export const ExperienceSection: React.FC = () => {
             <span className="text-secondary">pub async fn</span>{" "}
             <span className="text-primary">initialize_node</span>(config: NodeConfig) -&gt; Result&lt;()&gt;{" {"}
             {"\n"}
-            {"    "}<span className="text-[#333333]">{"// Initialize p2p networking stack"}</span>{"\n"}
             {"    "}<span className="text-secondary">let</span> swarm = <span className="text-primary">build_swarm</span>(config.keypair)?;{"\n"}
             {"\n"}
             {"    "}<span className="text-secondary">let</span> metrics = <span className="text-primary">MetricsRegistry::new</span>();{"\n"}

@@ -75,25 +75,24 @@ const projects: Project[] = [
     secondaryAction: { label: "View Project", icon: "code", href: "https://wispp.edu.kh" },
   },
 
-  // {
-  //   title: "Etherscan Bot Analyzer",
-  //   description:
-  //     "A high-performance Python tool designed to monitor and analyze smart contract interactions on the Ethereum blockchain via the Etherscan API. Identifies patterns indicative of bot activity.",
-  //   tags: [
-  //     { label: "PYTHON", color: "text-primary bg-primary/10 border-primary/30" },
-  //     { label: "WEB3", color: "text-tertiary bg-tertiary/10 border-tertiary/30" },
-  //     { label: "API", color: "text-on-surface bg-outline-variant/20 border-outline-variant" },
-  //   ],
-  //   status: "PRODUCTION",
-  //   statusColor: "text-tertiary-fixed-dim bg-tertiary-fixed-dim/10",
-  //   language: "Python",
-  //   filename: "analyzer.py", // Changed extension to match language
-  //   imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBrqS0Jt-zR5TZeWpzG0ASFfO35h_Dyk6pMrwylgT3yRH88-h7ucij9amvHbtL2JR349rhOksLZGVJvguLo699t-bM2cXEXNmAHN2psJqn360FK5y9Y51_EgDqqp5KVFubgbwsQz0I39IavbHfNyg9WKe39KymEJqQUkEXBTX7OUDbz7y5D8eMvy5FDD8wznW8VXmHzMsV6vGGc3RsGHauDniWL6iitfDk_DOP-AiFvLPd-JQmrVcYTtNOn4d1eU0QmOTWet4n6hwQ",
-  //   imageAlt: "Etherscan Bot Analyzer Preview",
-  //   lastCommit: "Last commit: 2d ago",
-  //   primaryAction: { label: "View Source", icon: "terminal" },
-  //   secondaryAction: { label: "Documentation" },
-  // },
+  {
+    title: "Etherscan Bot Analyzer",
+    description:
+      "A high-performance Rust service designed to monitor and analyze smart contract interactions on the Ethereum blockchain via the Etherscan API. Identifies patterns indicative of bot activity.",
+    tags: [
+      { label: "RUST", color: "text-primary bg-primary/10 border-primary/30" },
+      { label: "WEB3", color: "text-tertiary bg-tertiary/10 border-tertiary/30" },
+      { label: "API", color: "text-on-surface bg-outline-variant/20 border-outline-variant" },
+    ],
+    status: "LIVE",
+    statusColor: "text-tertiary-fixed-dim bg-tertiary-fixed-dim/10",
+    language: "Rust",
+    filename: "etherscan.rs",
+    imageUrl: "/assets/img/etherscans.png",
+    imageAlt: "Etherscan Bot Analyzer Preview",
+    primaryAction: { label: "Launch App", icon: "open_in_new", href: "/tools/etherscan" },
+    secondaryAction: { label: "Documentation", href: "/blog" },
+  },
   // {
   //   title: "Decentralized Web3 Chat",
   //   description:

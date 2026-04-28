@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     "Full-stack engineer specializing in high-performance distributed systems.",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{

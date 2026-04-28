@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { PixelatedImage } from "./PixelatedImage";
 
 export function BackgroundProfileSection() {
 
@@ -9,11 +10,12 @@ export function BackgroundProfileSection() {
       <header className="grid grid-cols-1 md:grid-cols-12 gap-px bg-outline-variant border border-outline-variant">
         <div className="md:col-span-3 bg-background p-8 flex flex-col items-center justify-center md:border-r border-outline-variant">
           <div className="w-full aspect-square border border-outline-variant overflow-hidden bg-black">
-            <Image
+            <PixelatedImage
               alt="Personnel Photo"
-              src="https://drive.google.com/uc?export=view&id=1JBE2nVPd8FoQxz-pbdZde20yjf_3ze6q"
-              width={400}
-              height={400}
+              src="/assets/img/profile.PNG"
+              width={800}
+              height={800}
+              pixelSize={16}
               className="w-full h-full object-cover grayscale contrast-[1.2] hover:grayscale-0 hover:contrast-100 transition-all duration-300"
             />
           </div>

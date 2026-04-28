@@ -1,15 +1,36 @@
 import React from "react";
+import { PixelatedImage } from "./PixelatedImage";
 
 export const HeroSection: React.FC = () => {
   return (
     <section className="min-h-[819px] flex items-center border-b border-[#333333] relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0D0D0D] pointer-events-none"></div>
       <div className="max-w-[1280px] w-full mx-auto px-4 md:px-8 pt-12 pb-16 md:py-24 relative z-10">
-        <div className="flex flex-col gap-6 max-w-3xl">
-          <SystemStatusIndicator />
-          <HeroTitle />
-          <HeroDescription />
-          <CallToActionButtons />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="flex flex-col gap-6 lg:col-span-7 xl:col-span-8">
+            <SystemStatusIndicator />
+            <HeroTitle />
+            <HeroDescription />
+            <CallToActionButtons />
+          </div>
+          <div className="hidden lg:flex lg:col-span-5 xl:col-span-4 justify-center items-center relative">
+            <div className="w-full max-w-[360px] aspect-square border border-[#333333] overflow-hidden bg-black relative group shadow-[0_0_30px_rgba(0,229,255,0.05)] hover:shadow-[0_0_30px_rgba(0,229,255,0.15)] transition-shadow duration-500">
+              <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#00E5FF] z-20 transition-all duration-300 group-hover:w-8 group-hover:h-8"></div>
+              <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#00E5FF] z-20 transition-all duration-300 group-hover:w-8 group-hover:h-8"></div>
+              <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#00E5FF] z-20 transition-all duration-300 group-hover:w-8 group-hover:h-8"></div>
+              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#00E5FF] z-20 transition-all duration-300 group-hover:w-8 group-hover:h-8"></div>
+              <div className="absolute inset-0 bg-[#00E5FF]/5 group-hover:bg-transparent transition-colors duration-300 z-10 pointer-events-none"></div>
+              
+              <PixelatedImage
+                alt="Pav Khemerak"
+                src="/assets/img/profile.PNG"
+                width={800}
+                height={800}
+                pixelSize={16}
+                className="w-full h-full object-cover grayscale contrast-[1.2] opacity-70 group-hover:grayscale-0 group-hover:contrast-100 group-hover:opacity-100 transition-all duration-500"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>

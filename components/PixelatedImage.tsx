@@ -22,7 +22,7 @@ export function PixelatedImage({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const imageRef = useRef<HTMLImageElement | null>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
   const currentPixelSizeRef = useRef(pixelSize);
 
   useEffect(() => {

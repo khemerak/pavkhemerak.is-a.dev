@@ -284,7 +284,7 @@ function DesktopBlogCard({ post }: { post: BlogPost }) {
                 )}
               </div>
 
-              {!hasCode && (
+              {(hasImage || !hasCode) && (
                 <h2
                   className={`font-bold leading-tight text-on-surface mb-3 group-hover:text-primary transition-colors ${
                     hasImage ? "text-[22px]" : "text-[17px]"
@@ -300,7 +300,7 @@ function DesktopBlogCard({ post }: { post: BlogPost }) {
             </>
           )}
 
-          {hasCode && (
+          {hasCode && !hasImage && (
             <div className="p-6 flex flex-col flex-grow">
               <div className="flex items-center gap-4 text-on-surface-variant font-mono text-[12px] mb-4">
                 <span>{post.date}</span>

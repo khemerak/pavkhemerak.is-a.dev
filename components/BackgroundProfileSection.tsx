@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import { PixelatedImage } from "./PixelatedImage";
+import type { PortfolioContent } from "@/app/lib/portfolioContent";
 
-export function BackgroundProfileSection() {
+export function BackgroundProfileSection({ profile }: { profile: PortfolioContent["profile"] }) {
 
   return (
     <section id="profile" className="w-full max-w-[1280px] mx-auto px-5 md:px-16 py-10 md:py-16 scroll-mt-24 space-y-12">
@@ -23,19 +24,20 @@ export function BackgroundProfileSection() {
         <div className="md:col-span-9 bg-background p-8 flex flex-col justify-between">
           <div>
             <h1 className="text-[32px] md:text-[48px] font-extrabold uppercase text-primary leading-tight tracking-tighter mb-4">
-              PAV KHEMERAK
+              {profile.displayName}
             </h1>
             <div className="flex flex-wrap gap-4 font-mono text-[12px]">
-              <span className="flex items-center gap-2 bg-secondary/10 text-secondary px-3 py-1 border border-secondary">
-                <span className="w-2 h-2 bg-secondary shadow-[0_0_8px_rgba(144,216,135,0.6)]"></span>
-                STATUS: ONLINE
-              </span>
-              <span className="bg-surface-bright text-on-surface-variant px-3 py-1 border border-outline-variant">
-                CLEARANCE: FULL-STACK
-              </span>
-              <span className="bg-surface-bright text-on-surface-variant px-3 py-1 border border-outline-variant">
-                ROLE: CYBER_ANALYST
-              </span>
+              {profile.tags.map((tag, idx) => (
+                <span
+                  key={tag}
+                  className={idx === 0
+                    ? "flex items-center gap-2 bg-secondary/10 text-secondary px-3 py-1 border border-secondary"
+                    : "bg-surface-bright text-on-surface-variant px-3 py-1 border border-outline-variant"}
+                >
+                  {idx === 0 && <span className="w-2 h-2 bg-secondary shadow-[0_0_8px_rgba(144,216,135,0.6)]"></span>}
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
           {/* <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-8 font-mono text-zinc-500 uppercase tracking-widest border-t border-outline-variant pt-6 text-[12px]">
@@ -58,15 +60,10 @@ export function BackgroundProfileSection() {
           </div> */}
           <div className="mt-8 grid grid-cols-2 md:grid-cols-4 border-t border-outline-variant">
             {/* Each item is contained in a rigid, bordered box to match the compartmentalized style */}
-            {[
-              { label: "Origin", value: "CAMBODIAN" },
-              { label: "Code_Name", value: "PRINZE" },
-              { label: "Age", value: "22" },
-              { label: "status", value: "ONLINE" },
-            ].map((item, index) => (
+            {profile.facts.map((item, index) => (
               <div
                 key={index}
-                className={`p-4 ${index !== 3 ? 'border-r border-outline-variant' : ''} font-mono uppercase`}
+                className={`p-4 ${index !== profile.facts.length - 1 ? "border-r border-outline-variant" : ""} font-mono uppercase`}
               >
                 <p className="text-[10px] text-secondary tracking-[0.1em] mb-1">
                   {item.label}

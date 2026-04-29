@@ -1,120 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import type { PortfolioProject } from "@/app/lib/portfolioContent";
 
-interface Project {
-  title: string;
-  description: string;
-  tags: { label: string; color: string }[];
-  status: string;
-  statusColor: string;
-  language: string;
-  filename: string;
-  imageUrl: string;
-  imageAlt: string;
-  priority?: boolean;
-  primaryAction: { label: string; icon: string; href?: string };
-  secondaryAction: { label: string; icon?: string; href?: string };
-}
-
-const projects: Project[] = [
-  {
-    title: "Ket — Fast, Interactive Download Manager",
-    description:
-      "A minimalist, high-velocity CLI utility designed for organizing and retrieving technical snippets and study resources.",
-    tags: [
-      { label: "SHELL", color: "text-secondary bg-secondary/10 border-secondary/30" },
-      { label: "TOOL", color: "text-primary bg-primary/10 border-primary/30" },
-      { label: "DOWNLOADER", color: "text-on-surface bg-outline-variant/20 border-outline-variant" },
-    ],
-    status: "STABLE",
-    statusColor: "text-secondary-fixed-dim bg-secondary-fixed-dim/10",
-    language: "Rust",
-    filename: "ket.exe",
-    imageUrl: "/assets/img/ket.png",
-    imageAlt: "Ket CLI Tool Preview",
-    priority: true,
-
-    primaryAction: { label: "View Source", icon: "terminal", href: "https://github.com/khemerak/ket.git" },
-    secondaryAction: { label: "Documentation", icon: "menu_book", href: "https://github.com/khemerak/ket.git" },
-  },
-  {
-    title: "Arch Linux — Hyprland Rice",
-    description:
-      "A highly customized Linux environment featuring automated deployment scripts, tiling window manager configurations, and optimized system performance. Focuses on a 'keyboard-centric' developer workflow.",
-    tags: [
-      { label: "ARCH", color: "text-primary bg-primary/10 border-primary/30" },
-      { label: "HYPRLAND", color: "text-secondary bg-secondary/10 border-secondary/30" },
-      { label: "DOTFILES", color: "text-on-surface bg-outline-variant/20 border-outline-variant" },
-    ],
-    status: "MAINTAINED",
-    statusColor: "text-secondary-fixed-dim bg-secondary-fixed-dim/10",
-    language: "Bash & Lua",
-    filename: ".config",
-    imageUrl: "/assets/img/dotfiles.jpg",
-    imageAlt: "Arch Linux Desktop Configuration Preview",
-    primaryAction: { label: "View Source", icon: "terminal", href: "https://github.com/khemerak/dotfiles.git" },
-    secondaryAction: { label: "Setup Guide", icon: "settings", href: "https://github.com/khemerak/dotfiles.git" },
-  },
-  {
-    title: "WISPP — Official School Website",
-    description:
-      "A comprehensive, responsive web platform developed for Westbridge International School of Phnom Penh.",
-    tags: [
-      { label: "WEB", color: "text-primary bg-primary/10 border-primary/30" },
-      { label: "FULL-STACK", color: "text-secondary bg-secondary/10 border-secondary/30" },
-      { label: "EDUCATION", color: "text-on-surface bg-outline-variant/20 border-outline-variant" },
-    ],
-    status: "LIVE",
-    statusColor: "text-success-fixed-dim bg-success-fixed-dim/10",
-    language: "PHP / JavaScript",
-    filename: "wispp.edu.kh",
-    imageUrl: "/assets/img/wispp-preview.png",
-    imageAlt: "Westbridge International School Website Preview",
-
-    primaryAction: { label: "Live Demo", icon: "language", href: "https://wispp.edu.kh" },
-    secondaryAction: { label: "View Project", icon: "code", href: "https://wispp.edu.kh" },
-  },
-
-  {
-    title: "Etherscan Bot Analyzer",
-    description:
-      "A high-performance Rust service designed to monitor and analyze smart contract interactions on the Ethereum blockchain via the Etherscan API. Identifies patterns indicative of bot activity.",
-    tags: [
-      { label: "RUST", color: "text-primary bg-primary/10 border-primary/30" },
-      { label: "WEB3", color: "text-tertiary bg-tertiary/10 border-tertiary/30" },
-      { label: "API", color: "text-on-surface bg-outline-variant/20 border-outline-variant" },
-    ],
-    status: "LIVE",
-    statusColor: "text-tertiary-fixed-dim bg-tertiary-fixed-dim/10",
-    language: "Rust",
-    filename: "etherscan.rs",
-    imageUrl: "/assets/img/etherscans.png",
-    imageAlt: "Etherscan Bot Analyzer Preview",
-    primaryAction: { label: "Launch App", icon: "open_in_new", href: "/tools/etherscan" },
-    secondaryAction: { label: "Documentation", href: "/blog" },
-  },
-  // {
-  //   title: "Decentralized Web3 Chat",
-  //   description:
-  //     "A secure, end-to-end encrypted messaging application built on top of decentralized protocols. Features wallet-based authentication and on-chain message hashes for non-repudiation.",
-  //   tags: [
-  //     { label: "REACT NATIVE", color: "text-primary bg-primary/10 border-primary/30" },
-  //     { label: "IPFS", color: "text-tertiary bg-tertiary/10 border-tertiary/30" },
-  //     { label: "SOLIDITY", color: "text-on-surface bg-outline-variant/20 border-outline-variant" },
-  //   ],
-  //   status: "BETA",
-  //   statusColor: "text-primary-fixed-dim bg-primary-fixed-dim/10",
-  //   language: "TypeScript",
-  //   filename: "index.tsx",
-  //   imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBLLNdynclroTPRewHWVteXr3bmyRRRMXtObIgCImP6L_BiCvxhMFXrNvdri2-mZ_lLqgnAufUA5PTWgqIkfRg7I969jN1Kcco9Khrgrl1WWMSQaiQRL6kCS011xxm0513pwm7DcabTu0i0zajhop30DQGHZs7Gxe84R14gd5iAnaBPWC0sV0ghtyID-W4N4Au3Mksp_m2bK4MyE6eQLJpmscITw_N4T6pNilLIORyfgLnBPaGBZH8y-o5mqvb1CEf20Yy7BmTk8lo",
-  //   imageAlt: "Web3 Chat App Preview",
-  //   lastCommit: "Last commit: 5h ago",
-  //   primaryAction: { label: "Launch App", icon: "open_in_new" },
-  //   secondaryAction: { label: "Smart Contracts", icon: "code" },
-  // },
-];
-
-export function ToolsSection() {
+export function ToolsSection({ projects }: { projects: PortfolioProject[] }) {
   return (
     <section id="tools" className="w-full max-w-[1280px] mx-auto px-5 md:px-16 py-10 md:pt-16 md:pb-16 scroll-mt-24">
       {/* Header Section */}
@@ -155,7 +43,7 @@ export function ToolsSection() {
   );
 }
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project }: { project: PortfolioProject }) {
   return (
     <article className="bg-surface border border-outline-variant hover:border-primary transition-colors duration-300 relative group flex flex-col">
       {/* Ghost Border Hover Effect */}
@@ -177,7 +65,7 @@ function ProjectCard({ project }: { project: Project }) {
           alt={project.imageAlt}
           src={project.imageUrl}
           fill
-          priority={project.priority}
+          priority={false}
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover opacity-80 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500"
         />

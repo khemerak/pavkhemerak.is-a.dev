@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import type { PortfolioContent } from "@/app/lib/portfolioContent";
 
-export function ContactSection() {
+export function ContactSection({ contact }: { contact: PortfolioContent["contact"] }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -138,7 +139,7 @@ export function ContactSection() {
                     <span className="material-symbols-outlined text-[16px]">
                       location_on
                     </span>
-                    CAMBODIA // PHNOM_PENH // TOUL KORK
+                    {contact.location}
                   </p>
                 </div>
                 <div className="space-y-1">
@@ -149,7 +150,7 @@ export function ContactSection() {
                     <span className="material-symbols-outlined text-[16px]">
                       mail
                     </span>
-                    pavkhemerak.official@gmail.com
+                    {contact.email}
                   </p>
                 </div>
                 {/* <div className="space-y-2">
@@ -173,33 +174,18 @@ export function ContactSection() {
                   Network_Nodes
                 </span>
                 <div className="grid grid-cols-1 gap-3">
-                  <a
-                    className="flex items-center justify-between px-4 py-3 border border-outline-variant bg-primary/5 hover:bg-primary hover:text-background hover:border-primary transition-colors group"
-                    href="https://github.com/khemerak"
-                  >
-                    <span className="font-mono text-[14px] uppercase group-hover:text-background">GitHub</span>
-                    <span className="material-symbols-outlined text-[18px] group-hover:text-background">
-                      terminal
-                    </span>
-                  </a>
-                  <a
-                    className="flex items-center justify-between px-4 py-3 border border-outline-variant bg-primary/5 hover:bg-primary hover:text-background hover:border-primary transition-colors group"
-                    href="https://www.linkedin.com/in/pav-khemerak-6b7270269/"
-                  >
-                    <span className="font-mono text-[14px] uppercase group-hover:text-background">LinkedIn</span>
-                    <span className="material-symbols-outlined text-[18px] group-hover:text-background">
-                      connect_without_contact
-                    </span>
-                  </a>
-                  <a
-                    className="flex items-center justify-between px-4 py-3 border border-outline-variant bg-primary/5 hover:bg-primary hover:text-background hover:border-primary transition-colors group"
-                    href="https://t.me/pavkhemerak"
-                  >
-                    <span className="font-mono text-[14px] uppercase group-hover:text-background">TELEGRAM</span>
-                    <span className="material-symbols-outlined text-[18px] group-hover:text-background">
-                      send
-                    </span>
-                  </a>
+                  {contact.socials.map((social) => (
+                    <a
+                      key={social.label}
+                      className="flex items-center justify-between px-4 py-3 border border-outline-variant bg-primary/5 hover:bg-primary hover:text-background hover:border-primary transition-colors group"
+                      href={social.href}
+                    >
+                      <span className="font-mono text-[14px] uppercase group-hover:text-background">{social.label}</span>
+                      <span className="material-symbols-outlined text-[18px] group-hover:text-background">
+                        {social.icon}
+                      </span>
+                    </a>
+                  ))}
                 </div>
               </section>
 

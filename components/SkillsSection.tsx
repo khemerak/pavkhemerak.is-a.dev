@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import type { PortfolioContent } from "@/app/lib/portfolioContent";
 
-export function SkillsSection() {
+export function SkillsSection({ skills }: { skills: PortfolioContent["skills"] }) {
   return (
     <section className="w-full max-w-[1280px] mx-auto px-5 md:px-16 py-10 md:py-12">
       {/* Page Header */}
@@ -26,13 +27,13 @@ export function SkillsSection() {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
         {/* Terminal Window - Foundations */}
         <div className="md:col-span-8 flex flex-col gap-4">
-          <FoundationsTerminal />
+          <FoundationsTerminal languages={skills.languages} />
         </div>
 
         {/* Right Column - Cards */}
         <div className="md:col-span-4 flex flex-col gap-4">
-          <LinuxCard />
-          <EcosystemsCard />
+          <LinuxCard items={skills.linux} />
+          <EcosystemsCard tags={skills.ecosystems} />
         </div>
       </div>
 
@@ -63,20 +64,7 @@ export function SkillsSection() {
 }
 
 /* ========== Terminal Window: Foundations ========== */
-function FoundationsTerminal() {
-  const languages = [
-    { keyword: "fn", name: "Rust", delay: "" },
-    { keyword: "const", name: "JavaScript", delay: "delay-75" },
-    { keyword: "def", name: "Python", delay: "delay-100" },
-    { keyword: "public", name: "Java", delay: "delay-150" },
-    { keyword: "*", name: "C/C++", delay: "delay-200" },
-    { keyword: "using", name: "C#", delay: "delay-250" },
-    { keyword: "<?", name: "PHP", delay: "delay-300" },
-    { keyword: "SELECT", name: "SQL", delay: "delay-500" },
-    { keyword: "interface", name: "TypeScript", delay: "delay-100" },
-    { keyword: "#", name: "SHELL", delay: "delay-200" },
-  ];
-
+function FoundationsTerminal({ languages }: { languages: PortfolioContent["skills"]["languages"] }) {
   const [inputValue, setInputValue] = useState("");
   const [history, setHistory] = useState<{ cmd: string; output: string }[]>([]);
   const [isExecuting, setIsExecuting] = useState(false);
@@ -235,13 +223,7 @@ function FoundationsTerminal() {
 }
 
 /* ========== Linux Card ========== */
-function LinuxCard() {
-  const items = [
-    { name: "Arch Linux / Windows", label: "Daily Driver", labelColor: "text-tertiary bg-tertiary/10" },
-    { name: "Pop!_OS", label: "Secondary", labelColor: "text-zinc-500 bg-zinc-800/50" },
-    { name: "i3wm / Hyprland", label: "WM/Compositor", labelColor: "text-primary bg-primary/10" },
-  ];
-
+function LinuxCard({ items }: { items: PortfolioContent["skills"]["linux"] }) {
   return (
     <div className="bg-[#1A1A1A] border border-[#333333] p-6 group hover:border-primary transition-colors duration-300 relative h-full">
       <div className="absolute inset-0 bg-[#333333] opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none"></div>
@@ -274,9 +256,7 @@ function LinuxCard() {
 }
 
 /* ========== Ecosystems Card ========== */
-function EcosystemsCard() {
-  const tags = ["Full-Stack Web Development", "Pentesting", "Next.js", "Spring Boot", "Solana (Rust)", "Web3", "AI", "Blockchain", "Cloud Computing"];
-
+function EcosystemsCard({ tags }: { tags: string[] }) {
   return (
     <div className="bg-[#1A1A1A] border border-[#333333] p-6 group hover:border-primary transition-colors duration-300 relative h-full">
       <div className="flex justify-between items-start mb-6 border-b border-[#333333] pb-4">

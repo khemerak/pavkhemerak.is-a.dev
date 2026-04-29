@@ -28,6 +28,8 @@ A single-page portfolio with vertically-stacked sections:
 | Tools & Projects | `ToolsSection.tsx` | Project showcase with live links |
 | Contact | `ContactSection.tsx` | Contact form (sends email via `/api/contact`) |
 
+Portfolio section content is now CMS-driven at runtime through backend endpoint `GET /api/portfolio/content` with local defaults in `app/lib/portfolioContent.ts`.
+
 ### Blog (`/blog`)
 Dynamic blog listing fetched from the Rust backend API. Features:
 - Category filtering (Cybersecurity, Linux, Web3, Architecture)
@@ -61,7 +63,7 @@ cp .env.example .env.local
 pnpm dev
 ```
 
-The frontend runs on `http://localhost:3000`. API requests to `/api/blog/*`, `/api/github/*`, `/api/tools/*`, and `/api/health` are automatically proxied to the backend at `http://localhost:3001` via Next.js rewrites.
+The frontend runs on `http://localhost:3000`. API requests to `/api/blog/*`, `/api/github/*`, `/api/tools/*`, and `/api/health` are automatically proxied to the backend at `http://localhost:3001` via Next.js rewrites. Portfolio content is fetched server-side directly from `BACKEND_URL` / `NEXT_PUBLIC_BACKEND_URL`.
 
 ### Environment Variables
 
@@ -70,6 +72,7 @@ The frontend runs on `http://localhost:3000`. API requests to `/api/blog/*`, `/a
 | `GMAIL_USER` | — | Gmail address for contact form SMTP |
 | `GMAIL_APP_PASSWORD` | — | Gmail App Password (NOT your login password) |
 | `BACKEND_URL` | `http://localhost:3001` | Rust backend API URL |
+| `NEXT_PUBLIC_BACKEND_URL` | `http://localhost:3001` | Public fallback URL for server/client contexts |
 
 ### Build for Production
 
@@ -109,7 +112,8 @@ pavkhemerak.dev-frontend/
 │   │   ├── page.tsx         # Blog listing (fetches from backend)
 │   │   └── [slug]/page.tsx  # Blog post detail (markdown rendering)
 │   └── lib/
-│       └── types.ts         # Shared TypeScript types
+│       ├── portfolioContent.ts # CMS shape + defaults + merge helper
+│       └── types.ts            # Shared TypeScript types
 ├── components/
 │   ├── BackgroundProfileSection.tsx
 │   ├── BottomNavBar.tsx

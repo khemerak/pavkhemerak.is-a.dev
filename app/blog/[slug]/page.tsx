@@ -48,13 +48,33 @@ export default function BlogPostPage() {
 
   if (loading) {
     return (
-      <div className="w-full max-w-[800px] mx-auto px-5 md:px-6 py-10 flex items-center justify-center min-h-[60vh]">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-6 h-6 border-2 border-primary border-t-transparent animate-spin" />
-          <span className="font-mono text-[14px] text-outline uppercase tracking-widest">
-            Loading payload...
-          </span>
-        </div>
+      <div className="w-full max-w-[800px] mx-auto px-5 md:px-6 py-10 md:pt-10 md:pb-24 flex flex-col gap-10 md:gap-12 min-h-screen">
+        {/* Back Navigation Skeleton */}
+        <div className="w-40 h-6 bg-surface-high animate-pulse border border-outline-variant" />
+
+        {/* Article Header Skeleton */}
+        <header className="flex flex-col gap-6">
+          <div className="flex flex-wrap gap-3">
+            <div className="w-20 h-8 bg-surface-high animate-pulse border border-outline-variant" />
+            <div className="w-20 h-8 bg-surface-high animate-pulse border border-outline-variant" />
+          </div>
+          <div className="w-full h-12 bg-surface-high animate-pulse" />
+          <div className="w-3/4 h-12 bg-surface-high animate-pulse" />
+          <div className="w-64 h-6 bg-surface-high animate-pulse mt-2" />
+        </header>
+
+        {/* Hero Image Skeleton */}
+        <div className="w-full aspect-video border border-outline-variant bg-surface-high animate-pulse p-1" />
+
+        {/* Article Body Skeleton */}
+        <article className="flex flex-col gap-4">
+          <div className="w-full h-4 bg-surface-high animate-pulse" />
+          <div className="w-full h-4 bg-surface-high animate-pulse" />
+          <div className="w-11/12 h-4 bg-surface-high animate-pulse" />
+          <div className="w-full h-4 bg-surface-high animate-pulse mt-4" />
+          <div className="w-10/12 h-4 bg-surface-high animate-pulse" />
+          <div className="w-full h-4 bg-surface-high animate-pulse" />
+        </article>
       </div>
     );
   }
@@ -75,7 +95,7 @@ export default function BlogPostPage() {
   }
 
   return (
-    <div className="w-full max-w-[800px] mx-auto px-5 md:px-6 py-10 md:pt-10 md:pb-24 flex flex-col gap-10 md:gap-12">
+    <div className="w-full max-w-[800px] mx-auto px-5 md:px-6 py-10 md:pt-10 md:pb-24 flex flex-col gap-10 md:gap-12 min-h-screen">
       {/* Back Navigation */}
       <div>
         <Link
@@ -233,6 +253,20 @@ export default function BlogPostPage() {
               </a>
             ),
             hr: () => <hr className="border-outline-variant my-8" />,
+            img: ({ src, alt }) => {
+              if (!src) return null;
+              return (
+                <div className="w-full aspect-video border border-outline-variant bg-surface p-1 relative overflow-hidden my-6">
+                  <Image
+                    src={src}
+                    alt={alt || "Blog image"}
+                    fill
+                    sizes="(max-width: 800px) 100vw, 800px"
+                    className="object-contain"
+                  />
+                </div>
+              );
+            },
           }}
         >
           {post.content}

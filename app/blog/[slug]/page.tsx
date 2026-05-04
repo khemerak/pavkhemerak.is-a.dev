@@ -258,7 +258,7 @@ export default function BlogPostPage() {
               return (
                 <div className="w-full aspect-video border border-outline-variant bg-surface p-1 relative overflow-hidden my-6">
                   <Image
-                    src={src}
+                    src={src as string}
                     alt={alt || "Blog image"}
                     fill
                     sizes="(max-width: 800px) 100vw, 800px"

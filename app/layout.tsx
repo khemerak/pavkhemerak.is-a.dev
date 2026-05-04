@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { NavBar } from "@/components/NavBar";
 import { BottomNavBar } from "@/components/BottomNavBar";
@@ -30,6 +31,7 @@ export default function RootLayout({
         <main className="grow pt-16 md:pt-20 pb-0">{children}</main>
         <Footer />
         <BottomNavBar />
+        <Analytics />
         <SpeedInsights />
       </body>
     </html>

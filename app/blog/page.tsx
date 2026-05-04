@@ -68,7 +68,7 @@ export default function BlogPage() {
   const posts = data?.posts ?? [];
 
   return (
-    <div className="w-full mx-auto px-5 md:px-16 lg:px-24 py-10 md:py-12">
+    <div className="w-full mx-auto px-5 md:px-16 lg:px-24 py-10 md:py-12 min-h-screen flex flex-col">
       {/* Header Section */}
       <section className="mb-12 md:mb-16 border-b border-outline-variant pb-8">
         <h1 className="text-[40px] md:text-[64px] font-extrabold leading-[1.1] tracking-[-0.04em] text-on-background">
@@ -120,8 +120,8 @@ export default function BlogPage() {
       {/* Empty state */}
       {!loading && posts.length === 0 && (
         <div className="flex items-center justify-center py-24 border border-dashed border-outline-variant">
-          <div className="text-center">
-            <span className="material-symbols-outlined text-outline text-4xl mb-2">
+          <div className="text-center flex flex-col items-center">
+            <span className="material-symbols-outlined text-outline text-4xl mb-2 w-[36px] h-[36px] inline-block overflow-hidden shrink-0">
               search_off
             </span>
             <p className="font-mono text-[14px] text-outline uppercase tracking-widest">
@@ -163,7 +163,7 @@ export default function BlogPage() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
-              <span className="material-symbols-outlined text-[16px]">chevron_left</span>
+              <span className="material-symbols-outlined text-[16px] w-[16px] h-[16px] inline-block overflow-hidden shrink-0">chevron_left</span>
               PREV
             </button>
             
@@ -180,7 +180,7 @@ export default function BlogPage() {
               }}
             >
               NEXT
-              <span className="material-symbols-outlined text-[16px]">chevron_right</span>
+              <span className="material-symbols-outlined text-[16px] w-[16px] h-[16px] inline-block overflow-hidden shrink-0">chevron_right</span>
             </button>
           </div>
         </div>
@@ -203,7 +203,7 @@ function DesktopBlogCard({ post }: { post: BlogPost }) {
       >
         {/* Image */}
         {hasImage && (
-          <div className="h-36 lg:h-44 border-b border-outline-variant overflow-hidden relative">
+          <div className="aspect-video w-full border-b border-outline-variant overflow-hidden relative shrink-0">
             <Image
               alt={post.imageAlt || post.title}
               src={post.imageUrl!}
@@ -263,13 +263,13 @@ function DesktopBlogCard({ post }: { post: BlogPost }) {
                 {hasImage && (
                   <>
                     <span className="flex items-center gap-1">
-                      <span className="material-symbols-outlined text-[14px]">
+                      <span className="material-symbols-outlined text-[14px] w-[14px] h-[14px] inline-block overflow-hidden shrink-0">
                         calendar_today
                       </span>
                       {post.date}
                     </span>
                     <span className="flex items-center gap-1">
-                      <span className="material-symbols-outlined text-[14px]">
+                      <span className="material-symbols-outlined text-[14px] w-[14px] h-[14px] inline-block overflow-hidden shrink-0">
                         schedule
                       </span>
                       {post.readTime}
@@ -315,7 +315,7 @@ function DesktopBlogCard({ post }: { post: BlogPost }) {
           {hasImage && (
             <div className="mt-auto flex items-center text-primary font-mono text-[14px] group-hover:translate-x-2 transition-transform duration-200">
               Read full payload
-              <span className="material-symbols-outlined ml-2 text-[18px]">
+              <span className="material-symbols-outlined ml-2 text-[18px] w-[18px] h-[18px] inline-block overflow-hidden shrink-0">
                 arrow_forward
               </span>
             </div>

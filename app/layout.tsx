@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -10,13 +11,16 @@ export const metadata: Metadata = {
   title: "pavkhemerak.dev",
   description:
     "Full-stack engineer specializing in high-performance distributed systems.",
+  icons: {
+    icon: "/atom.png",
+  },
 };
 
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en" className="dark">

@@ -11,6 +11,7 @@ export function ContactSection({ contact }: { contact: PortfolioContent["contact
     message: ""
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,15 +26,23 @@ export function ContactSection({ contact }: { contact: PortfolioContent["contact
         body: JSON.stringify(formData),
       });
 
-      if (!res.ok) throw new Error("Transmission failed");
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || "Transmission failed");
+      }
 
       setStatus("success");
+      setErrorMessage(null);
       setFormData({ name: "", email: "", priority: "GENERAL_CORRESPONDENCE", message: "" });
 
       setTimeout(() => setStatus("idle"), 5000);
-    } catch (err) {
+    } catch (err: any) {
       setStatus("error");
-      setTimeout(() => setStatus("idle"), 5000);
+      setErrorMessage(err.message || "Transmission failed");
+      setTimeout(() => {
+        setStatus("idle");
+        setErrorMessage(null);
+      }, 5000);
     }
   };
   return (
@@ -116,13 +125,18 @@ export function ContactSection({ contact }: { contact: PortfolioContent["contact
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 ></textarea>
               </div>
-              <button
-                className="w-full md:w-auto px-12 py-4 bg-background border border-primary text-primary font-mono text-[14px] uppercase tracking-widest hover:bg-primary hover:text-background transition-colors active:translate-x-[2px] active:translate-y-[2px] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-background disabled:hover:text-primary"
-                type="submit"
-                disabled={status === "loading"}
-              >
-                {status === "loading" ? "TRANSMITTING..." : status === "success" ? "DELIVERED" : status === "error" ? "FAILED_RETRY" : "SEND MESSAGE"}
-              </button>
+              <div>
+                <button
+                  className="w-full md:w-auto px-12 py-4 bg-background border border-primary text-primary font-mono text-[14px] uppercase tracking-widest hover:bg-primary hover:text-background transition-colors active:translate-x-[2px] active:translate-y-[2px] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-background disabled:hover:text-primary"
+                  type="submit"
+                  disabled={status === "loading"}
+                >
+                  {status === "loading" ? "TRANSMITTING..." : status === "success" ? "DELIVERED" : status === "error" ? "FAILED_RETRY" : "SEND MESSAGE"}
+                </button>
+                {status === "error" && errorMessage && (
+                  <p className="mt-4 font-mono text-[12px] text-red-500 uppercase">{errorMessage}</p>
+                )}
+              </div>
             </form>
           </div>
 

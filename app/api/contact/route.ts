@@ -1,5 +1,24 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import dns from 'dns';
+import { promisify } from 'util';
+
+const resolveMx = promisify(dns.resolveMx);
+
+async function isValidEmailDomain(email: string): Promise<boolean> {
+  try {
+    const domain = email.split('@')[1];
+    if (!domain) return false;
+    const records = await resolveMx(domain);
+    return records && records.length > 0;
+  } catch (error) {
+    return false;
+  }
+}
+
+// Simple in-memory rate limiting for the Node.js serverless instance.
+const rateLimitMap = new Map<string, number>();
+const RATE_LIMIT_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
 export async function POST(request: Request) {
   try {
@@ -12,6 +31,41 @@ export async function POST(request: Request) {
         { error: 'Name, email, and message are required.' },
         { status: 400 }
       );
+    }
+
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: 'Invalid email format.' },
+        { status: 400 }
+      );
+    }
+
+    // Check if email domain exists (MX records)
+    const isDomainValid = await isValidEmailDomain(email);
+    if (!isDomainValid) {
+      return NextResponse.json(
+        { error: 'Invalid email domain. The email address must be legit and exist.' },
+        { status: 400 }
+      );
+    }
+
+    // Rate limiting: 1 email per day
+    const now = Date.now();
+    const lastSent = rateLimitMap.get(email);
+    if (lastSent && (now - lastSent < RATE_LIMIT_DURATION)) {
+      return NextResponse.json(
+        { error: 'You can only send one message per day using this email. Please try again tomorrow.' },
+        { status: 429 }
+      );
+    }
+
+    // Cleanup old entries in the rateLimitMap to prevent memory leaks
+    for (const [key, timestamp] of rateLimitMap.entries()) {
+      if (now - timestamp > RATE_LIMIT_DURATION) {
+        rateLimitMap.delete(key);
+      }
     }
 
     const gmailUser = process.env.GMAIL_USER;
@@ -56,6 +110,9 @@ export async function POST(request: Request) {
 
     // Send the email
     await transporter.sendMail(mailOptions);
+
+    // Record the successful send for rate limiting
+    rateLimitMap.set(email, Date.now());
 
     return NextResponse.json(
       { message: 'Transmission successful.' },

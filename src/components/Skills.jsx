@@ -7,7 +7,7 @@ function Skills() {
                 <div>
                     <h4 className="text-md lg:text-lg font-medium text-mono-primary mb-6 border-b border-mono-border pb-4">Full-Stack & Systems Development</h4>
                     <p className="text-base md:text-lg text-mono-secondary leading-relaxed font-light">
-                        Knowledgable in GoLang, Java, Spring Boot, TypeScript, NextJS/ReactJS,
+                        Knowledgable in GoLang, Java, Spring Boot, TypeScript, NextJS/ReactJS, RestAPI
                     </p>
                 </div>
 
